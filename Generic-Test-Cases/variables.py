@@ -1,5 +1,8 @@
+import os
+
+current_directory = os.getcwd().replace('\\', '/')
 browser = "chrome"
-url = "http://127.0.0.1:5500/resources/website/jurap.html"
+url = f"file:///{current_directory}/resources/website/jurap.html"
 register_button = "id:register-nav"
 username_field = "id:reg-username"
 password_field = "id:reg-password"
