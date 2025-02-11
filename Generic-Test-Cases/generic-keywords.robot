@@ -17,7 +17,7 @@ Click the register button
 
 They should be redirected to the login page
     Wait Until Page Contains Element    ${LOGIN_BUTTON}    timeout=10s
-
+    
 User is on the login page
     Wait Until Page Contains Element    ${LOGIN_BUTTON}    timeout=10s
     Click Element    ${LOGIN_BUTTON}
@@ -48,4 +48,3 @@ The user is logged in
     User is on the login page
     They enter valid login credentials
     Click the login button
-

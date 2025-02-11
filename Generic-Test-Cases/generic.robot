@@ -4,9 +4,9 @@ Resource    generic-keywords.robot
 Variables  variables.py
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 
-
 *** Test Cases ***
 User registers successfully
+#Add proper tags + documentation
     [Tags]    Andreas_Refactor_Tan
     Given User is on the register page
     When They enter a valid username and password
@@ -28,4 +28,3 @@ User logs out successfully
     When The user is logged in
     Then They should be able to logout
     Sleep    3s
-    # And They should be able to login
