@@ -14,4 +14,3 @@ output.xml
 report.html
 selenium-screenshot-*.png
 /_pycache_/
-variables.cpython-*.pyc
