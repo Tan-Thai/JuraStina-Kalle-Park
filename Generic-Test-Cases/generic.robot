@@ -3,6 +3,7 @@ Library  SeleniumLibrary
 Resource    generic-keywords.robot
 Variables  variables.py
 Test Setup  Open Browser  ${URL}  ${BROWSER}
+Test Teardown    Close Browser
 
 *** Test Cases ***
 User registers successfully
