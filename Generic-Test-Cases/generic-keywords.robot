@@ -35,7 +35,7 @@ They should be able to login
     Wait Until Page Contains Element    ${LOGOUT_BUTTON}    timeout=10s
 
 They should not be able to login
-    # Confirms by checking if the login button is present
+    # Confirms by checking if the login message is present
     Wait Until Page Contains Element    ${LOGIN_MESSAGE}    timeout=10s
 
 
@@ -56,8 +56,9 @@ Click the login button
 
 They should be able to logout
     Wait Until Page Contains Element    ${LOGOUT_BUTTON}    timeout=10s
-    Wait Until Page Does Not Contain Element    ${login_button}    timeout=10s
     Click Element    ${LOGOUT_BUTTON}
+    Handle Alert
+    Wait Until Page Contains Element    ${login_button}    timeout=10s
 
 
 
