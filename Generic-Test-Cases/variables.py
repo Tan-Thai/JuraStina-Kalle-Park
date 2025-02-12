@@ -17,12 +17,17 @@ login_password_field = "id:login-password"
 
 submit_register = "css:#register-form button[type='submit']"
 submit_login = "css:#login-form > button[type='submit']"
+submit_add_to_cart = "css:#ticket-form > button[type='submit']"
+
 # endregion
 
 # region Menu-bar variables
 register_button = "id:register-nav"
 login_button = "id:login-nav"
 logout_button = "id:logout-nav"
+buy_tickets_button = "id:tickets-nav"
+book_safaris_button = "id:safari-nav"
+cart_button = "id:cart-nav"
 
 # endregion
 

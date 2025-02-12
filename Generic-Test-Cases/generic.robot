@@ -24,6 +24,15 @@ User logs in successfully
     Then They should be able to login
     Sleep    3s
 
+User tries to log in with wrong credentials
+    [Tags]    Andreas
+    [Documentation]    Assures that the user is unable to login with invalid credentials.
+    Given The user has an account
+    When They enter invalid login credentials
+    And Click the login button
+    Then They should not be able to login
+    Sleep    3s
+
 User logs out successfully
     [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to logout when they are currently logged in.
@@ -31,3 +40,13 @@ User logs out successfully
     When The user is logged in
     Then They should be able to logout
     Sleep    3s
+
+User purchases a ticket
+    [Tags]
+    [Documentation]    Assures that the user is able to purchase a ticket when they are logged in.
+    Given The user has an account
+    And The user is logged in
+    And The user is on the buy tickets page
+    When Click the add to cart button
+    Handle Alert
+    Then The page says item added to cart
