@@ -34,6 +34,7 @@ User tries to log in with wrong credentials
     Then They should not be able to login
     Sleep    3s
 
+# TODO: Now fails after adjustments, find issue and fix it. -TT
 User logs out successfully
     [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to logout when they are currently logged in.
