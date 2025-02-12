@@ -37,6 +37,10 @@ They enter valid login credentials
     Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
     Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
 
+They enter invalid login credentials
+    Sleep    2s
+    Input Text    ${LOGIN_USERNAME_FIELD}    ${INVALID_USERNAME}
+    Input Text    ${LOGIN_PASSWORD_FIELD}    ${INVALID_PASSWORD}
 
 They should be able to login
     # Confirms by checking if the logout button is present
@@ -57,17 +61,15 @@ The user is logged in
     They enter valid login credentials
     Click the login button
 
-They enter invalid login credentials
-    Sleep    2s
-    Input Text    ${LOGIN_USERNAME_FIELD}    ${INVALID_USERNAME}
-    Input Text    ${LOGIN_PASSWORD_FIELD}    ${INVALID_PASSWORD}
-
 They should not be able to login
     # Confirms by checking if the login button is present
     Wait Until Page Contains Element    ${LOGIN_MESSAGE}    timeout=10s
 
-Message should be visible
-    [Arguments]    ${}
-
+Read alert message
+    [Arguments]    ${MESSAGE_TEXT}
+    Sleep    2s
+    Alert Should Be Present    ${MESSAGE_TEXT}
+    
+    
 The page says item added to cart
-    Message should be visible
+    Read alert message    ${ticket_added_to_cart_message_text}

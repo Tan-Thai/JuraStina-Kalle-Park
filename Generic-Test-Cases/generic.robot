@@ -42,11 +42,10 @@ User logs out successfully
     Sleep    3s
 
 User purchases a ticket
-    [Tags]
+    [Tags]    Daniel
     [Documentation]    Assures that the user is able to purchase a ticket when they are logged in.
     Given The user has an account
     And The user is logged in
     And The user is on the buy tickets page
     When Click the add to cart button
-    Handle Alert
     Then The page says item added to cart

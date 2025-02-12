@@ -9,11 +9,12 @@ url = f"file:///{current_directory}/resources/website/jurap.html"
 # region Credentials related variables
 username = "test123"
 password = "test12345"
+ticket_added_to_cart_message_text = "Item added to cart!"
 
 username_field = "id:reg-username"
 password_field = "id:reg-password"
 login_username_field = "id:login-username"
-login_password_field = "id:login-passsord"
+login_password_field = "id:login-password"
 
 submit_register = "css:#register-form button[type='submit']"
 submit_login = "css:#login-form > button[type='submit']"
