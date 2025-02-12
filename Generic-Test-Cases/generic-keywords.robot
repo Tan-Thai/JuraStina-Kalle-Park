@@ -95,4 +95,3 @@ Read alert message
     [Arguments]    ${MESSAGE_TEXT}
     Sleep    2s
     Alert Should Be Present    ${MESSAGE_TEXT}
-    
