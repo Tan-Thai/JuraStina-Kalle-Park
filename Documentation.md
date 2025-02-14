@@ -75,6 +75,15 @@ the park during a weekend to allow the children to take a **closer** look at the
 the family needs VIP tickets to both book a "`Herbivore Tour with Feeding`", and book a date during the `weekend`.
 The test related to this case need to first pass the generic tests, then test ticket types and VIP related functions. 
 
+#### User-story
+`As a:` Family of 4
+
+`We want:` To purchase 4 VIP tickets
+
+`So that:` To visit the park during a weekend
+
+`and:` Watch the dinosaurs up close.
+
 #### Short summary of what we need to test based on user-story:
 
 - Create user
