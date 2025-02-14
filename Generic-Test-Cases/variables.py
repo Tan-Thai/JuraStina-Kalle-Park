@@ -34,3 +34,9 @@ book_safaris_button = "id:safari-nav"
 cart_button = "id:cart-nav"
 
 # endregion
+
+# region Cart related variables
+cart_details = "id:cart-details"
+cart_item = "xpath://div[@id='cart-details']/*[1]"
+
+# endregion

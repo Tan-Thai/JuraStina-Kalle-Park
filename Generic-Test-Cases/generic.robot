@@ -50,3 +50,13 @@ User purchases a ticket
     And The user is on the buy tickets page
     When Click the add to cart button
     Then The page says item added to cart
+
+User puts item in cart
+    [Tags]    Andreas
+    [Documentation]    Assures that the user is able to put an item in the cart.
+    Given The user has an account
+    And The user is logged in
+    And The user has an item in the cart
+    When The user is on the cart page
+    Then The user should be able to see the item in the cart
+    Sleep    3s

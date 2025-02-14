@@ -75,6 +75,14 @@ Click the add to cart button
 The page says item added to cart
     Read alert message    ${ticket_added_to_cart_message_text}
 
+The user is on the cart page
+    Wait Until Page Contains Element    ${cart_button}    timeout=10s
+    Click Element    ${cart_button}
+
+The user should be able to see the item in the cart
+    Wait Until Page Contains Element    ${cart_details}    timeout=10s
+    Page Should Contain Element    ${cart_item}
+
 
 
 ####### Setup #######
@@ -89,6 +97,11 @@ The user is logged in
     They enter valid login credentials
     Click the login button
     Sleep    2s
+
+The user has an item in the cart
+    The user is on the buy tickets page
+    Click the add to cart button
+    Handle Alert
 
 ####### General #######
 
