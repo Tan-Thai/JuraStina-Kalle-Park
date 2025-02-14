@@ -50,6 +50,19 @@ User purchases a ticket
     And The user is on the buy tickets page
     When Click the add to cart button
     Then The page says item added to cart
+    Sleep    2s
+
+# TODO: Make dynamic date selection & fix cart variables
+User purchases a tour
+    [Tags]    Andreas
+    [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
+    Given The user has an account
+    And The user has bought a ticket
+    And The user is on the buy safari page
+    When The user selects a specific tour and a date
+    Sleep    2s
+    And Add the tour ticket to cart
+    Then The page says item added to cart
 
 User puts item in cart
     [Tags]    Andreas

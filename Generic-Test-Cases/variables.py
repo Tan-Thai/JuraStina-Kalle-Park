@@ -21,6 +21,7 @@ login_password_field = "id:login-password"
 submit_register = "css:#register-form button[type='submit']"
 submit_login = "css:#login-form > button[type='submit']"
 submit_add_to_cart = "css:#ticket-form > button[type='submit']"
+submit_safari_to_cart = "css:#safari-form > button[type='submit']"
 
 login_message = "id:login-message"
 # endregion
@@ -32,6 +33,7 @@ logout_button = "id:logout-nav"
 buy_tickets_button = "id:tickets-nav"
 book_safaris_button = "id:safari-nav"
 cart_button = "id:cart-nav"
+safari_button = "id:safari-nav"
 
 # endregion
 
@@ -40,3 +42,8 @@ cart_details = "id:cart-details"
 cart_item = "xpath://div[@id='cart-details']/*[1]"
 
 # endregion
+
+# region Safari related variables
+tour_dropdown = "id:safari-type"
+safari_date_input = "xpath://input[@id='safari-date']"
+safari_date = "02-28-2025"

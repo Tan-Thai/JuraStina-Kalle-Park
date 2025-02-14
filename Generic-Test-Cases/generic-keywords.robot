@@ -72,6 +72,9 @@ The user is on the buy tickets page
 Click the add to cart button
     Click Element    ${submit_add_to_cart}
 
+Add the tour ticket to cart
+    Click Element    ${submit_safari_to_cart}
+
 The page says item added to cart
     Read alert message    ${ticket_added_to_cart_message_text}
 
@@ -82,6 +85,14 @@ The user is on the cart page
 The user should be able to see the item in the cart
     Wait Until Page Contains Element    ${cart_details}    timeout=10s
     Page Should Contain Element    ${cart_item}
+
+The user is on the buy safari page
+    Wait Until Page Contains Element    ${safari_button}    timeout=10s
+    Click Element    ${safari_button}
+
+The user selects a specific tour and a date
+    Select From List By Index    ${tour_dropdown}    1
+    Input Text    ${safari_date_input}    ${safari_date}
 
 
 
@@ -99,6 +110,12 @@ The user is logged in
     Sleep    2s
 
 The user has an item in the cart
+    The user is on the buy tickets page
+    Click the add to cart button
+    Handle Alert
+
+The user has bought a ticket
+    The user is logged in
     The user is on the buy tickets page
     Click the add to cart button
     Handle Alert
