@@ -11,6 +11,7 @@ username = "test123"
 password = "test12345"
 invalid_username = "123test"
 invalid_password = "12345test"
+ticket_added_to_cart_message_text = "Item added to cart!"
 
 username_field = "id:reg-username"
 password_field = "id:reg-password"
@@ -19,6 +20,7 @@ login_password_field = "id:login-password"
 
 submit_register = "css:#register-form button[type='submit']"
 submit_login = "css:#login-form > button[type='submit']"
+submit_add_to_cart = "css:#ticket-form > button[type='submit']"
 
 login_message = "id:login-message"
 # endregion
@@ -27,6 +29,8 @@ login_message = "id:login-message"
 register_button = "id:register-nav"
 login_button = "id:login-nav"
 logout_button = "id:logout-nav"
+buy_tickets_button = "id:tickets-nav"
+book_safaris_button = "id:safari-nav"
+cart_button = "id:cart-nav"
 
 # endregion
-
