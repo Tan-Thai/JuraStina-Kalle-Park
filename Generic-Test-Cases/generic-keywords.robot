@@ -4,6 +4,41 @@ Variables  variables.py
 
 *** Keywords ***
 
+### Refactor - Registration ###
+The user is not logged in, and is on the homepage
+# Confirms by checking if the logout button is present
+    ${is_logged_in}=    Run Keyword And Return Status    Element Should Be Visible   ${logout_button}
+    Run Keyword If    ${is_logged_in}    Click Element    ${logout_button}
+    Run Keyword If    ${is_logged_in}    Handle Alert
+    Wait Until Page Contains Element    ${login_button}    timeout=10s
+
+They attempt to register with valid credentials
+    Click Element    ${register_button}
+    Input Text    ${USERNAME_FIELD}    ${USERNAME}
+    Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
+    Click Element    ${SUBMIT_REGISTER}
+    
+### Refactor - Login ###
+The user has a registered account
+    They Attempt To Register With Valid Credentials
+    
+They log in with '${credential_type}' credentials
+    # Using embedded variables that allows the input to be changed from "valid" to "invalid"
+    # https://forum.robotframework.org/t/differences-between-if-elseif-and-run-keyword-if/5746/4
+    # Seems like "run keyword if" is old compared to "if/else".
+    Wait Until Element Is Visible    ${login_section}    10s
+    IF  "${credential_type}" == "valid"
+        They Enter Valid Login Credentials
+    ELSE IF  "${credential_type}" == "invalid"
+        They Enter Invalid Login Credentials
+    ELSE
+        Fail    Invalid credential type: ${credential_type}
+    END
+
+They should be logged in and be redirected to the homepage
+    Wait Until Element Is Visible    ${home_section}    10s
+    Wait Until Element Is Visible    ${logout_button}    10s
+
 
 ####### Registration #######
 
@@ -23,7 +58,10 @@ Click the register button
 ####### Login & Logout #######
 
 They should be redirected to the login page
-    Wait Until Page Contains Element    ${LOGIN_BUTTON}    timeout=10s
+    # Should this not look for the login form itself instead of a login button?
+    # Especially since login button is part of the nav-menu and thus always visible --TT
+    # Wait Until Page Contains Element    ${LOGIN_BUTTON}    timeout=10s
+    Wait Until Element Is Visible    ${login_section}    10s
     
 User is on the login page
     Wait Until Page Contains Element    ${LOGIN_BUTTON}    timeout=10s
@@ -40,9 +78,12 @@ They should not be able to login
 
 
 They enter valid login credentials
-    Sleep    2s
     Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
     Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
+    Click Element    ${submit_login}
+    #Sleep    2s
+    #Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
+    #Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
 
 They enter invalid login credentials
     Sleep    2s

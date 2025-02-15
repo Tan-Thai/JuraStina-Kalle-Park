@@ -7,6 +7,10 @@ url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 
 # region Credentials related variables
+
+login_section = '//*[@id="login-section"]'
+home_section = '//*[@id="home-section"]'
+
 username = "test123"
 password = "test12345"
 invalid_username = "123test"

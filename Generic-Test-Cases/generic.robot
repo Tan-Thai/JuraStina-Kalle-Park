@@ -6,24 +6,19 @@ Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser
 
 *** Test Cases ***
-User registers successfully
-#Add proper tags + documentation
+User registers a new account successfully-refactor
     [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to register an account.
-    Given User is on the register page
-    When They enter a valid username and password
-    And Click the register button
+    Given The user is not logged in, and is on the homepage
+    When They attempt to register with valid credentials
     Then They should be redirected to the login page
-    Sleep    3s
 
-User logs in successfully
+User logs in successfully-refactor
     [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to login with a registered account.
-    Given The user has an account
-    When They enter valid login credentials
-    And Click the login button
-    Then They should be able to login
-    Sleep    3s
+    Given The user has a registered account
+    When They log in with 'valid' credentials
+    Then They should be logged in and be redirected to the homepage
 
 User tries to log in with wrong credentials
     [Tags]    Andreas
