@@ -39,6 +39,68 @@ They should be logged in and be redirected to the homepage
     Wait Until Element Is Visible    ${home_section}    10s
     Wait Until Element Is Visible    ${logout_button}    10s
 
+They should see an error message indicating login failure
+    Wait Until Element Contains    ${login_message}    Invalid username or password.
+
+### Refactor log out ###
+They Log Out
+    Wait Until Element Is Visible    ${home_section}    10s
+    Wait Until Page Contains Element    ${LOGOUT_BUTTON}    timeout=10s
+    Click Element    ${LOGOUT_BUTTON}
+    Handle Alert
+
+They should be redirected to the homepage and see the login button
+    Wait Until Element Is Visible    ${home_section}    10s
+    Wait Until Element Is Visible    ${login_button}    10s
+    
+The User Is Logged In refactor
+    The User Has A Registered Account
+    They Log In With 'valid' Credentials
+    They should be logged in and be redirected to the homepage
+
+### refactor ticket ###
+They add a ticket to the cart
+    Click Element    ${buy_tickets_button}
+    Click Element    ${submit_add_to_cart}
+
+They should be able to see a confirmation message that the ticket was added
+    Read alert message    ${ticket_added_to_cart_message_text}
+    Handle Alert
+
+### refactor tour ###
+The user has bought a ticket - refactor
+    They Add A Ticket To The Cart refactor
+    #TODO: Check why buying a ticket and then choosing a tour is not working.
+    #Proceed with the purchase at checkout
+    #Handle Alert
+
+### checkout refactor ###
+They Add A Ticket To The Cart refactor
+    Click Element    ${buy_tickets_button}
+    Click Element    ${submit_add_to_cart}
+    Handle Alert
+
+Proceed with the purchase at checkout
+    Click Element    ${cart_button}
+    Wait Until Element Is Visible    ${cart_section}    10s
+    Click Button    ${checkout_button}    
+
+They should be able to see a checkout summary with their purchased items
+    # TODO Check the text maybe? Should not be needed as the checkout button only works when there's items in the cart.
+    # - TT
+    ## test passes so i think this works???
+    ${message} =    Handle Alert    #We handle + save the string attached in the alert here.
+    Should Contain    ${message}    Checkout Summary:
+
+They select a tour and a date
+    Click Element    ${safari_button}
+    Wait Until Element Is Visible    ${safari_section}    10s
+    Select From List By Index    ${tour_dropdown}    1
+    Input Text    ${safari_date_input}    ${safari_date}
+
+They add the selected tour to the cart
+    Click Element    ${submit_safari_to_cart}
+
 
 ####### Registration #######
 
@@ -86,9 +148,9 @@ They enter valid login credentials
     #Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
 
 They enter invalid login credentials
-    Sleep    2s
     Input Text    ${LOGIN_USERNAME_FIELD}    ${INVALID_USERNAME}
     Input Text    ${LOGIN_PASSWORD_FIELD}    ${INVALID_PASSWORD}
+    Click Element    ${submit_login}
 
 
 Click the login button

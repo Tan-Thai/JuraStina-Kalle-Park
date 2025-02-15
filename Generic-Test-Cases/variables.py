@@ -6,10 +6,16 @@ browser = "chrome"
 url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 
-# region Credentials related variables
-
+# these sections should probably be renamed to 'page'
+# random shit by Tan - will move when all tests are done. refactor my refactor yeyeyeyeye.
 login_section = '//*[@id="login-section"]'
 home_section = '//*[@id="home-section"]'
+cart_section = '//*[@id="cart-section"]'
+safari_section = '//*[@id="safari-section"]'
+
+checkout_button = '//*[@id="checkout-button"]'
+
+# region Credentials related variables
 
 username = "test123"
 password = "test12345"
