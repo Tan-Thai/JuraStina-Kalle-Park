@@ -75,6 +75,7 @@ add_ticket_to_cart_button = "css:#ticket-form > button[type='submit']"
 # region Safari variables
 safari_section = '//*[@id="safari-section"]'
 
+ticket_type_dropdown = "id:ticket-category"
 safari_type_dropdown = "id:safari-type"
 safari_date_input_field = "xpath://input[@id='safari-date']"
 next_monday_date = get_next_upcoming_weekday(0,"MM-DD-YYYY" ) # argument is 0-6
