@@ -80,6 +80,11 @@ They should be redirected to the homepage and see the login button
 They add a ticket to the cart
     [Tags]    When    Given
     Click Element    ${nav_menu_ticket}
+    Wait Until Element Is Visible    ${ticket_type_dropdown}    10s
+    Select From List By Index    ${ticket_type_dropdown}    1
+    Sleep    1s
+    ${selected}=    Get Selected List Value    ${ticket_type_dropdown}
+    Should Be Equal    ${selected}    VIP
     Click Element    ${add_ticket_to_cart_button}
     ${message} =    Handle Alert
     Should Contain    ${message}    ${item_added_to_cart_message_text}
@@ -134,6 +139,13 @@ They should be able to see a checkout summary with their purchased items
     ## test passes so i think this works??? -TT
     ${message} =    Handle Alert    #We handle + save the string attached in the alert here.
     Should Contain    ${message}    Checkout Summary:
+
+The cart should be empty
+    [Tags]    And
+    Click Element    ${nav_menu_cart}
+    Wait Until Element Is Visible    ${cart_section}    timeout=10s
+    Element Should Contain    ${cart_details}    Your cart is empty
+
 
 ### Internal ###
 They enter invalid login credentials

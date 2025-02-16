@@ -51,15 +51,16 @@ User adds a tour to the cart
     [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
     Given The User Is Logged In
     And They Add A Ticket To The Cart
-    #To make this dynamic we have to buy a VIP ticket.
     When They add a viable tour with a chosen date to the cart
     Then They should be able to see the tour in the cart
+    Sleep    3s
 
 User completes a purchase
-    [Tags]    Tan
+    [Tags]    Tan    Andreas_refactor
     [Documentation]    Asserts that the user is capable of going through with a purchase at checkout.
     Given The User Is Logged In
     And They Add A Ticket To The Cart
     When Proceed with the purchase at checkout
     Then They should be able to see a checkout summary with their purchased items
-    # Potential 'And' here for ensuring that the cart is now empty.
+    And The cart should be empty
+
