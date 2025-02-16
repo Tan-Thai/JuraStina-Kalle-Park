@@ -19,14 +19,14 @@ User logs in successfully
     [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to login with a registered account.
     Given The user has a registered account
-    When They log in with 'valid' credentials
+    When They log in with 'VALID' credentials    # VALID/INVALID to tell the computer to input certain credentials
     Then They should be logged in and be redirected to the homepage
 
 User tries to log in with wrong credentials
     [Tags]    Andreas    Tan_refactor
     [Documentation]    Assures that the user is unable to login with invalid credentials.
     Given The user has a registered account
-    When They Log In With 'invalid' Credentials
+    When They Log In With 'INVALID' Credentials
     Then They should see an error message indicating login failure
 
 User logs out successfully
@@ -43,23 +43,22 @@ User adds a ticket to the cart
     [Tags]    Daniel    Tan_Refactor
     [Documentation]    Assures that the user is able to purchase a ticket when they are logged in.
     Given The User Is Logged In
-    When They add a ticket to the cart
+    When They add a 'REGULAR' ticket to the cart    # NORMAL/VIP for ticket type choices
     Then They should be able to see the ticket in the cart
 
 User adds a tour to the cart
     [Tags]    Andreas    Tan_refactor
     [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
     Given The User Is Logged In
-    And They Add A Ticket To The Cart
+    And They Add A 'REGULAR' Ticket To The Cart
     When They add a viable tour with a chosen date to the cart
     Then They should be able to see the tour in the cart
-    Sleep    3s
 
 User completes a purchase
     [Tags]    Tan    Andreas_refactor
     [Documentation]    Asserts that the user is capable of going through with a purchase at checkout.
     Given The User Is Logged In
-    And They Add A Ticket To The Cart
+    And They Add A 'VIP' Ticket To The Cart
     When Proceed with the purchase at checkout
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty

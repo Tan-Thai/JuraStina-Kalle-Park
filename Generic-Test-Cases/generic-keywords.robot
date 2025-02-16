@@ -40,9 +40,10 @@ They log in with '${credential_type}' credentials
     # Seems like "run keyword if" is old compared to "if/else". -TT
     # Can hardcode the functions of input here if we wanted, but I think this looks cleaner. -TT
     Wait Until Element Is Visible    ${login_section}    10s
-    IF  "${credential_type}" == "valid"
+
+    IF  "${credential_type.lower()}" == "valid"
         They Enter Valid Login Credentials
-    ELSE IF  "${credential_type}" == "invalid"
+    ELSE IF  "${credential_type.lower()}" == "invalid"
         They Enter Invalid Login Credentials
     ELSE
         Fail    Invalid credential type: ${credential_type}
@@ -77,15 +78,29 @@ They should be redirected to the homepage and see the login button
     Wait Until Element Is Visible    ${nav_menu_login}    10s
 
 ### Ticket ###
-They add a ticket to the cart
+They add a '${ticket_type}' ticket to the cart
     [Tags]    When    Given
     Click Element    ${nav_menu_ticket}
     Wait Until Element Is Visible    ${ticket_type_dropdown}    10s
-    Select From List By Index    ${ticket_type_dropdown}    1
-    Sleep    1s
+
+    # unsure if this works but this will make it all lowercase from my understanding
+    # as shown in valid/invalid, you can skip setting variables and just use `.lower()` right away
+    # instead of creating multiple steps. But i think its good to showcase both for learning purposes. -TT
+    ${ticket_type_lower}    Set Variable    ${ticket_type.lower()}
+    
+    IF  "${ticket_type_lower}" == "regular"
+        Select From List By Index    ${ticket_type_dropdown}    0
+    ELSE IF  "${ticket_type_lower}" == "vip"
+        Select From List By Index    ${ticket_type_dropdown}    1
+    ELSE
+        Fail    Invalid ticket type: ${ticket_type}
+    END
+
     ${selected}=    Get Selected List Value    ${ticket_type_dropdown}
-    Should Be Equal    ${selected}    VIP
+    ${selected_lower}    Set Variable   ${selected.lower()}
+    Should Contain    ${selected_lower}    ${ticket_type_lower}
     Click Element    ${add_ticket_to_cart_button}
+
     ${message} =    Handle Alert
     Should Contain    ${message}    ${item_added_to_cart_message_text}
 
@@ -119,7 +134,7 @@ They should be able to see the tour in the cart
     Click Element    ${nav_menu_cart}
     Wait Until Element Is Visible    ${cart_section}    10s
     ${locale}    Execute Javascript    return navigator.language
-    Log To Console    Browser locale is: ${locale}
+    #Log To Console    Browser locale is: ${locale}
     #TODO: Currently expected date string is going by YY-MM-DD. Actual string is DD-MM-YY
     ${listed_items}    Get Text    ${cart_details}
     Should Not Contain    ${listed_items}    Your cart is empty
