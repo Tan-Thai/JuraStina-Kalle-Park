@@ -54,6 +54,14 @@ User adds a tour to the cart
     When They add a viable tour with a chosen date to the cart
     Then They should be able to see the tour in the cart
 
+User adds a tour using keyboard to the cart
+    [Tags]    Andreas    Tan_refactor
+    [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
+    Given The User Is Logged In
+    And They Add A 'REGULAR' Ticket To The Cart
+    When They add a tour booked for monday by navigating the calendar dropdown using the keyboard to the cart
+    Then They should be able to see the tour in the cart
+
 User completes a purchase
     [Tags]    Tan    Andreas_refactor
     [Documentation]    Asserts that the user is capable of going through with a purchase at checkout.

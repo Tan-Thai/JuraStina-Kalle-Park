@@ -8,6 +8,29 @@ url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 
 # region Functions
+def get_amount_of_days_until_index_of_day(index_of_day):
+    current_date = datetime.date.today()
+    return (7 + index_of_day) - current_date
+
+def get_days_left_until_day(day_of_week):
+    lower_case_day = day_of_week.lower()
+    match lower_case_day:
+        case "monday":
+            return get_amount_of_days_until_index_of_day(0)
+        case "tuesday":
+            return get_amount_of_days_until_index_of_day(1)
+        case "wednesday":
+            return get_amount_of_days_until_index_of_day(2)
+        case "thursday":
+            return get_amount_of_days_until_index_of_day(3)
+        case "friday":
+            return get_amount_of_days_until_index_of_day(4)
+        case "saturday":
+            return get_amount_of_days_until_index_of_day(5)
+        case "sunday":
+            return get_amount_of_days_until_index_of_day(6)
+
+
 def get_next_upcoming_weekday(target_weekday, date_format="YYYY-MM-DD"):
     #https://www.geeksforgeeks.org/python-program-to-get-the-nth-weekday-after-a-given-date/
     #0-6 for the days of the week, 0=monday -> 6=sunday
@@ -17,7 +40,6 @@ def get_next_upcoming_weekday(target_weekday, date_format="YYYY-MM-DD"):
         days_delta += 7
 
     date_of_next_weekday = current_date + datetime.timedelta(days_delta)
-
     # reasoning behind MM-DD-YY is due to the websites interpretation of input. it being en-us
     # reformating the date from YY-MM-DD --> to MM-DD-YY
     # https://docs.python.org/3.13/library/datetime.html#format-codes

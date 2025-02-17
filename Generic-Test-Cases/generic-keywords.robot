@@ -129,6 +129,30 @@ They add a viable tour with a chosen date to the cart
     Click Element    ${add_safari_to_cart_button}
     Handle Alert
 
+They add a tour booked for ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart  #working name -DK
+    [Tags]    When
+    Click Element    ${nav_menu_safari}
+    Wait Until Element Is Visible    ${safari_section}    10s
+    Selecting ${chosen_day} from dropdown calendar
+    Click Element    ${add_safari_to_cart_button}
+    Handle Alert
+
+Selecting ${chosen_day} from dropdown calendar
+    [Tags]    Under_test
+    ${button_presses}=    variables.get_days_left_until_day(${chosen_day})    modules=variables  # DESPERATION KICKING IN
+    # Tried several methods while waiting for food, and what I found as I gave up was something about to go eat was
+    # "import keyword" and assigning keywords to the python functions -DK
+    Press Keys    ${safari_date_input_field}    SPACE
+    ...    ARROW_DOWN
+    Navigate ${get_days_left_until_day(chosen_day)} steps to the right in the calendar
+    Press Key    ${safari_date_input_field}    Enter
+
+Navigate ${amount_of_steps} steps to the right in the calendar 
+    Press Key    ${safari_date_input_field}    ARROW_DOWN
+    FOR    ${key_press}    IN RANGE    ${amount_of_steps}
+        Press Key    ${safari_date_input_field}    ARROW_RIGHT
+    END
+
 They should be able to see the tour in the cart
     [Tags]    Then
     Click Element    ${nav_menu_cart}
