@@ -1,6 +1,5 @@
 *** Settings ***
 Library  SeleniumLibrary
-Library    variables.py
 Library    ../resources/global_files/weekday_helper.py
 Variables  variables.py
 
@@ -20,14 +19,12 @@ The user is not logged in, and is on the homepage
 They attempt to register with valid credentials
     [Tags]    When
     Click Element    ${nav_menu_register}
-    Input Text    ${USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
+    Input Text    ${USERNAME_FIELD}    ${valid_username}
+    Input Text    ${PASSWORD_FIELD}    ${valid_password}
     Click Element    ${SUBMIT_REGISTER}
 
 They should be redirected to the login page
     [Tags]    Then
-    # Should this not look for the login form itself instead of a login button?
-    # Especially since login button is part of the nav-menu and thus always visible --TT
     Wait Until Element Is Visible    ${login_section}    10s
 
 ### Login ###
@@ -83,7 +80,7 @@ They should be redirected to the homepage and see the login button
 They add a '${ticket_type}' ticket to the cart
     [Tags]    When    Given
     Click Element    ${nav_menu_ticket}
-    Wait Until Element Is Visible    ${ticket_type_dropdown}    10s
+    Wait Until Element Is Visible    ${ticket_category_dropdown}    10s
 
     # unsure if this works but this will make it all lowercase from my understanding
     # as shown in valid/invalid, you can skip setting variables and just use `.lower()` right away
@@ -91,14 +88,14 @@ They add a '${ticket_type}' ticket to the cart
     ${ticket_type_lower}    Set Variable    ${ticket_type.lower()}
     
     IF  "${ticket_type_lower}" == "regular"
-        Select From List By Index    ${ticket_type_dropdown}    0
+        Select From List By Index    ${ticket_category_dropdown}    0
     ELSE IF  "${ticket_type_lower}" == "vip"
-        Select From List By Index    ${ticket_type_dropdown}    1
+        Select From List By Index    ${ticket_category_dropdown}    1
     ELSE
         Fail    Invalid ticket type: ${ticket_type}
     END
 
-    ${selected}=    Get Selected List Value    ${ticket_type_dropdown}
+    ${selected}=    Get Selected List Value    ${ticket_category_dropdown}
     ${selected_lower}    Set Variable   ${selected.lower()}
     Should Contain    ${selected_lower}    ${ticket_type_lower}
     Click Element    ${add_ticket_to_cart_button}
@@ -115,7 +112,7 @@ They should be able to see the ticket in the cart
     Should Contain    ${listed_items}    Ticket    #Currently hardcoded to test, not sure if its needed as variable.-TT
 
 ### Tour ###
-They add a tour booked for ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart  #working name -DK
+They add a tour booked for next ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart  #working name -DK
     [Tags]    When
     Click Element    ${nav_menu_safari}
     Wait Until Element Is Visible    ${safari_section}    10s
@@ -133,7 +130,6 @@ Selecting ${chosen_day} from dropdown calendar
     # "import keyword" and assigning keywords to the python functions -DK
     Press Keys    ${safari_date_input_field}    SPACE
     Navigate ${input_count} steps to the right in the calendar
-    Sleep    2s
     Press Keys    None    Enter
     
 Navigate ${amount_of_steps} steps to the right in the calendar
@@ -148,7 +144,6 @@ They should be able to see the tour in the cart
     [Tags]    Then
     Click Element    ${nav_menu_cart}
     Wait Until Element Is Visible    ${cart_section}    10s
-    #TODO: Currently expected date string is going by YY-MM-DD. Actual string is DD-MM-YY
     #${locale}    Execute Javascript    return navigator.language
     #Log To Console    Browser locale is: ${locale}
     ${listed_items}    Get Text    ${cart_details}
@@ -160,15 +155,13 @@ They should be able to see the tour in the cart
 ### Checkout ###
 Proceed with the purchase at checkout
     [Tags]    When
-    #TODO: Check why buying a ticket and then choosing a tour is not working.
+    #Known Issue: Buying a ticket and then choosing a tour is not working. (blame Max) --TT
     Click Element    ${nav_menu_cart}
     Wait Until Element Is Visible    ${cart_section}    10s
     Click Button    ${checkout_button}
 
 They should be able to see a checkout summary with their purchased items
     [Tags]    Then
-    # TODO Check the text maybe? Should not be needed as the checkout button only works when there's items in the cart.
-    ## test passes so i think this works??? -TT
     ${message} =    Handle Alert    #We handle + save the string attached in the alert here.
     Should Contain    ${message}    Checkout Summary:
 
@@ -188,8 +181,8 @@ They enter invalid login credentials
 
 They enter valid login credentials
     [Tags]    Internal
-    Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
+    Input Text    ${LOGIN_USERNAME_FIELD}    ${valid_username}
+    Input Text    ${LOGIN_PASSWORD_FIELD}    ${valid_password}
     Click Element    ${submit_login}
 
 
@@ -200,7 +193,7 @@ They enter valid login credentials
 #    Click Element    ${nav_menu_safari}
 #    Wait Until Element Is Visible    ${safari_section}    10s
 #    Click Element    ${safari_date_input_field}
-#    #TODO: FIGURE OUT WHY AMERICAN DATE INPUT WORKS DESPITE OUR WEBSITE BEING DD-MM-YYYY. I hate this -TT
+#    #old-tod-o: FIGURE OUT WHY AMERICAN DATE INPUT WORKS DESPITE OUR WEBSITE BEING DD-MM-YYYY. I hate this -TT
 #    ## I initially thought it was because we used 'en-us' locale. BUT the issue still persists with 'en-GB'.
 #    ## Conclusion: The website is trolling us. Legit decide and dont use all 3 variants man 🙃
 #    ##    Input from RobotFramework> MM-DD-YYYY

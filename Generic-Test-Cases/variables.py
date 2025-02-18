@@ -7,13 +7,13 @@ browser = "chrome"
 url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 
-# these sections should probably be renamed to 'page'
-# random shit by Tan - will move when all tests are done. refactor my refactor yeyeyeyeye.
+# region Home Variables
 home_section = '//*[@id="home-section"]'
+# endregion
 
 # region Credentials variables
-username = "test123"
-password = "test12345"
+valid_username = "test123"
+valid_password = "test12345"
 
 invalid_username = "123test"
 invalid_password = "12345test"
@@ -53,7 +53,7 @@ add_ticket_to_cart_button = "css:#ticket-form > button[type='submit']"
 # region Safari variables
 safari_section = '//*[@id="safari-section"]'
 
-ticket_type_dropdown = "id:ticket-category"
+ticket_category_dropdown = "id:ticket-category"
 safari_type_dropdown = "id:safari-type"
 safari_date_input_field = "xpath://input[@id='safari-date']"
 

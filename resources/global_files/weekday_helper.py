@@ -8,6 +8,7 @@ def get_weekday_delta_offset(day_of_week):
     ### Accepts a string of a weekday and returns the amount of days(delta) until we that weekday: 1-7
     # create a list, to then filter through and look for a match
     # this will most likely look more clean compared to a match-case
+
     weekdays = {
         "monday": 0,
         "tuesday": 1,
@@ -19,7 +20,6 @@ def get_weekday_delta_offset(day_of_week):
     }
 
     day_index = weekdays.get(day_of_week.lower())
-    print(day_index)
     if day_index is None:
         # Intellisense magic. But it's essentially an error handler -TT
         raise   ValueError(f"Invalid day of the week: {day_of_week}")
@@ -28,7 +28,7 @@ def get_weekday_delta_offset(day_of_week):
     delta = (day_index - current_date.weekday()) % 7
 
     #This ensures if you are on the current weekday -
-    #you are looking for then it will jump exactly 1 week ahead -TT
+    #you are looking for current weekday then it will jump exactly 1 week ahead -TT
     if delta <= 0:
         delta += 7
 
