@@ -7,50 +7,6 @@ browser = "chrome"
 url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 
-# region Functions
-def get_amount_of_days_until_index_of_day(index_of_day):
-    current_date = datetime.date.today()
-    return (7 + index_of_day) - current_date
-
-def get_days_left_until_day(day_of_week):
-    lower_case_day = day_of_week.lower()
-    match lower_case_day:
-        case "monday":
-            return get_amount_of_days_until_index_of_day(0)
-        case "tuesday":
-            return get_amount_of_days_until_index_of_day(1)
-        case "wednesday":
-            return get_amount_of_days_until_index_of_day(2)
-        case "thursday":
-            return get_amount_of_days_until_index_of_day(3)
-        case "friday":
-            return get_amount_of_days_until_index_of_day(4)
-        case "saturday":
-            return get_amount_of_days_until_index_of_day(5)
-        case "sunday":
-            return get_amount_of_days_until_index_of_day(6)
-
-
-def get_next_upcoming_weekday(target_weekday, date_format="YYYY-MM-DD"):
-    #https://www.geeksforgeeks.org/python-program-to-get-the-nth-weekday-after-a-given-date/
-    #0-6 for the days of the week, 0=monday -> 6=sunday
-    current_date = datetime.date.today()
-    days_delta = target_weekday - current_date.weekday()
-    if days_delta <= 0:
-        days_delta += 7
-
-    date_of_next_weekday = current_date + datetime.timedelta(days_delta)
-    # reasoning behind MM-DD-YY is due to the websites interpretation of input. it being en-us
-    # reformating the date from YY-MM-DD --> to MM-DD-YY
-    # https://docs.python.org/3.13/library/datetime.html#format-codes
-    if date_format == "MM-DD-YYYY":
-        return date_of_next_weekday.strftime("%m-%d-%Y")
-    elif date_format == "YYYY-MM-DD":
-        return date_of_next_weekday.strftime("%Y-%m-%d")
-    else:
-        raise ValueError("Invalid date_format. Use 'DD-MM-YYYY' or 'YYYY-MM-DD'.")
-# endregion
-
 # these sections should probably be renamed to 'page'
 # random shit by Tan - will move when all tests are done. refactor my refactor yeyeyeyeye.
 home_section = '//*[@id="home-section"]'
@@ -100,7 +56,6 @@ safari_section = '//*[@id="safari-section"]'
 ticket_type_dropdown = "id:ticket-category"
 safari_type_dropdown = "id:safari-type"
 safari_date_input_field = "xpath://input[@id='safari-date']"
-next_monday_date = get_next_upcoming_weekday(0,"MM-DD-YYYY" ) # argument is 0-6
 
 add_safari_to_cart_button = "css:#safari-form > button[type='submit']"
 # endregion
@@ -112,7 +67,6 @@ cart_details = "id:cart-details"
 item_added_to_cart_message_text = "Item added to cart!"
 
 next_monday_date_TEST = "02-28-2025" ## I DON'T GET THIS ONE, WHY IS AMERICAN INPUT FUNCTIONING HERE??? -TT
-expected_monday_date_in_cart = get_next_upcoming_weekday(0, "YYYY-MM-DD")
 # endregion
 
 # region Checkout variables

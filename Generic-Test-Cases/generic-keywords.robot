@@ -1,5 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library    variables.py
+Library    ../resources/global_files/weekday_helper.py
 Variables  variables.py
 
 *** Keywords ***
@@ -113,22 +115,6 @@ They should be able to see the ticket in the cart
     Should Contain    ${listed_items}    Ticket    #Currently hardcoded to test, not sure if its needed as variable.-TT
 
 ### Tour ###
-They add a viable tour with a chosen date to the cart
-    [Tags]    When
-    Click Element    ${nav_menu_safari}
-    Wait Until Element Is Visible    ${safari_section}    10s
-    Click Element    ${safari_date_input_field}
-    #TODO: FIGURE OUT WHY AMERICAN DATE INPUT WORKS DESPITE OUR WEBSITE BEING DD-MM-YYYY. I hate this -TT
-    ## I initially thought it was because we used 'en-us' locale. BUT the issue still persists with 'en-GB'.
-    ## Conclusion: The website is trolling us. Legit decide and dont use all 3 variants man 🙃
-    ##    Input from RobotFramework> MM-DD-YYYY
-    ##    Input from Manual test > DD-MM-YYYY
-    ##    Output in cart > YYYY-MM-DD            --TT
-    Input Text    ${safari_date_input_field}    ${next_monday_date}
-    Select From List By Index    ${safari_type_dropdown}    1
-    Click Element    ${add_safari_to_cart_button}
-    Handle Alert
-
 They add a tour booked for ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart  #working name -DK
     [Tags]    When
     Click Element    ${nav_menu_safari}
@@ -138,31 +124,38 @@ They add a tour booked for ${chosen_day} by navigating the calendar dropdown usi
     Handle Alert
 
 Selecting ${chosen_day} from dropdown calendar
-    [Tags]    Under_test
-    ${button_presses}=    variables.get_days_left_until_day(${chosen_day})    modules=variables  # DESPERATION KICKING IN
+    [Tags]    Under_review    Daniel    Tan_refactor
+    Set Test Variable    ${selected_day}    ${chosen_day}    #Sets a "file wide" variable so it can be accessed later on.
+
+    ${input_count}    get_weekday_delta_offset    ${chosen_day}    #importing library of our file allows calls to funcs. -TT
+    # DESPERATION KICKING IN - DK
     # Tried several methods while waiting for food, and what I found as I gave up was something about to go eat was
     # "import keyword" and assigning keywords to the python functions -DK
     Press Keys    ${safari_date_input_field}    SPACE
-    ...    ARROW_DOWN
-    Navigate ${get_days_left_until_day(chosen_day)} steps to the right in the calendar
-    Press Key    ${safari_date_input_field}    Enter
-
-Navigate ${amount_of_steps} steps to the right in the calendar 
-    Press Key    ${safari_date_input_field}    ARROW_DOWN
+    Navigate ${input_count} steps to the right in the calendar
+    Sleep    2s
+    Press Keys    None    Enter
+    
+Navigate ${amount_of_steps} steps to the right in the calendar
+    [Tags]    Under_review    Daniel    Tan_refactor
+    [Documentation]    Input solution for the dynamic calendar ui in javascript.
     FOR    ${key_press}    IN RANGE    ${amount_of_steps}
-        Press Key    ${safari_date_input_field}    ARROW_RIGHT
+        Press Keys    None    ARROW_RIGHT    #i got trolled by documentation. i assumed none was literally no text -TT
+        #Sleep    0.1s    #Use this if you want to see the actual movement during calendar selection. -TT
     END
 
 They should be able to see the tour in the cart
     [Tags]    Then
     Click Element    ${nav_menu_cart}
     Wait Until Element Is Visible    ${cart_section}    10s
-    ${locale}    Execute Javascript    return navigator.language
-    #Log To Console    Browser locale is: ${locale}
     #TODO: Currently expected date string is going by YY-MM-DD. Actual string is DD-MM-YY
+    #${locale}    Execute Javascript    return navigator.language
+    #Log To Console    Browser locale is: ${locale}
     ${listed_items}    Get Text    ${cart_details}
+    ${expected_date} =    get_upcoming_target_weekday_date    ${selected_day}
+
     Should Not Contain    ${listed_items}    Your cart is empty
-    Should Contain    ${listed_items}    ${expected_monday_date_in_cart}
+    Should Contain    ${listed_items}    ${expected_date}
 
 ### Checkout ###
 Proceed with the purchase at checkout
@@ -198,3 +191,22 @@ They enter valid login credentials
     Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
     Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
     Click Element    ${submit_login}
+
+
+### Old-Code that's not in use but good for teaching/learning purposes ###
+#They add a viable tour with a chosen date to the cart
+#    [Tags]    When    Tan
+#    [Documentation]    Old solution for date input. no longer in use due to input bug within the website.
+#    Click Element    ${nav_menu_safari}
+#    Wait Until Element Is Visible    ${safari_section}    10s
+#    Click Element    ${safari_date_input_field}
+#    #TODO: FIGURE OUT WHY AMERICAN DATE INPUT WORKS DESPITE OUR WEBSITE BEING DD-MM-YYYY. I hate this -TT
+#    ## I initially thought it was because we used 'en-us' locale. BUT the issue still persists with 'en-GB'.
+#    ## Conclusion: The website is trolling us. Legit decide and dont use all 3 variants man 🙃
+#    ##    Input from RobotFramework> MM-DD-YYYY
+#    ##    Input from Manual test > DD-MM-YYYY
+#    ##    Output in cart > YYYY-MM-DD            --TT
+#    Input Text    ${safari_date_input_field}    ${next_monday_date}
+#    Select From List By Index    ${safari_type_dropdown}    1
+#    Click Element    ${add_safari_to_cart_button}
+#    Handle Alert
