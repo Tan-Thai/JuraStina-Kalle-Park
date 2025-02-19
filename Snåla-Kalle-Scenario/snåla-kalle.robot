@@ -14,7 +14,7 @@ Snåla-Kalle cross checks pricing of a tour on a new vs an old account
     #
     #    No keywords implemented as of this push
     #
-    Given That Snåla-Kalle has an account 'Snåla-Kalle' with a previous visit
+    Given Snåla-Kalle has an account 'Snåla-Kalle' with a previous visit
     And Snåla-Kalle has created a new account 'Ståla-Nalle' and is logged in
     When Snåla-Kalle looks at the cart price of a '<ticket>' and a '<tour>'    # choose ticket and tour
     And Snåla-Kalle changes account to 'Snåla-Kalle'
