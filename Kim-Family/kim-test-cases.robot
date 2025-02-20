@@ -23,9 +23,12 @@ Kim logins successfully
     When They log in with 'VALID' credentials
     Then They should be logged in and be redirected to the homepage
 
+#upon further inspection, these 2 tests below might need to be redone slightly
+#Clarifcation over what the test is actually looking for. Since both of these
+# are currently going all the way to checkout over "testing" the actual functionality. -TT
 Kim purchases tickets (2 adults, 2 children)
     [Documentation]  User should be able to purchase tickets
-    [Tags]  Andreas
+    [Tags]  Andreas    Tan_refactor
     Given The User Is Logged In
     When They add a family package of VIP tickets to the cart    # 2 adults, 2 children
     Then They should be able to see the ticket in the cart
@@ -34,13 +37,12 @@ Kim purchases tickets (2 adults, 2 children)
     And The cart should be empty    # Maybe not necessary, but good to check
     # Check validity for multiple tickets
 
-Kim books four VIP safari tours
+Kim books 4 VIP safari tours
     [Documentation]  User should be able to book a safari tour
-    [Tags]  Andreas
+    [Tags]  Andreas    Tan_refactor    
     Given The User Is Logged In
-    And They add a family package of VIP tickets to the cart    # 2 adults, 2 childrem
-    When They book four VIP safari tours on the weekend
+    And They add a family package of VIP tickets to the cart    # 2 adults, 2 children
+    When They book 4 VIP safari tours on the weekend
     And Proceed with the purchase at checkout
-    Sleep    5s
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty    # Maybe not necessary here either, but good to check
