@@ -29,13 +29,15 @@ Kim purchases tickets (2 adults, 2 children)
     [Documentation]  User should be able to purchase tickets
     [Tags]  Andreas    Tan_refactor
     Given The User Is Logged In
+
     When They add a family package of VIP tickets to the cart    # 2 adults, 2 children
     And Proceed with the purchase at checkout
+
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty    # Maybe not necessary, but good to check
     # Check validity for multiple tickets
 
-Kim books 4 VIP safari tours
+Kim books and purchase 4 VIP safari tours
     [Documentation]  User should be able to book a safari tour
     [Tags]  Andreas    Tan_refactor    
     Given The User Is Logged In
