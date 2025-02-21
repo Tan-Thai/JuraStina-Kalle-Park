@@ -1,5 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library    Collections
 Resource    ../Generic-Test-Cases/generic-keywords.robot
 Variables    snåla-kalle-variables.py
 
@@ -19,11 +20,11 @@ Snåla-Kalle has created a new account ${ACCOUNT_NAME} and is logged in
 
     
 
-Snåla-Kalle looks at the ${PRICE} of a ${TICKET_TYPE} ticket and a ${TOUR_TYPE} tour
+Snåla-Kalle checks the price of a ${TICKET_TYPE} ticket and a ${TOUR_TYPE} tour
     [Tags]    When
     They add a 'regular' ticket to the cart
     They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
-    They check the ${PRICE} of the items listed in the cart
+    They check the price of the items listed in the cart
 
 Snåla-Kalle changes account to ${USERNAME}
     [Tags]    When
@@ -33,10 +34,11 @@ Snåla-Kalle changes account to ${USERNAME}
 
 
 
-The ${first_price} and ${second_price} should match
+The price of both purchases should match each other
     [Tags]    Then
     [Documentation]    
-    Should Be Equal    ${first_price}    ${second_price}
+    Should Be Equal As Strings    ${prices}[0]    ${prices}[1]
+    
 
 
 ${ACCOUNT_NAME} has a previously purchased ticket and tour
@@ -45,7 +47,8 @@ ${ACCOUNT_NAME} has a previously purchased ticket and tour
     They add a tour booked for next monday by navigating the calendar dropdown using the keyboard to the cart
     Proceed with the purchase at checkout
     Handle Alert
-    They Log Out
+    The cart should be empty
+    Snåla-Kalle Logs Out
     The user is not logged in, and is on the homepage
 
 
@@ -92,8 +95,18 @@ They enter valid login credentials for ${USERNAME}
     Click Element    ${submit_login}
 
 
-They check the ${price} of the items listed in the cart
+They check the price of the items listed in the cart
     Click Element    ${nav_menu_cart}
-    Wait Until Element Is Visible    ${cart_section}    10s
-    ${total_price}=    Get Text    ${cart_details}
-    Set Global Variable    ${price}    ${total_price}
+    Wait Until Element Is Visible    ${checkout_button}    10s
+    Click Element    ${checkout_button}
+    ${total_price}    Handle Alert
+    Append To List    ${prices}    ${total_price}
+
+    
+
+
+Snåla-Kalle Log Out
+    [Tags]    When
+    Wait Until Page Contains Element    ${nav_menu_logout}    timeout=10s
+    Click Element    ${nav_menu_logout}
+    Handle Alert
