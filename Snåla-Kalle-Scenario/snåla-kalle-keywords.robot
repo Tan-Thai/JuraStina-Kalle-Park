@@ -21,7 +21,6 @@ User has created a new account ${USERNAME} and is logged in
     The user has a registered account with username ${USERNAME}
     ${USERNAME} is logged in
 
-    
 
 User checks the price of a ${TICKET_TYPE} ticket and a tour
     [Tags]    When
