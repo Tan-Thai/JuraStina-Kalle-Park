@@ -10,30 +10,19 @@ Variables    snåla-kalle-variables.py
 
 ## Scenario Specific ##
 
-Snåla-Kalle has an account ${ACCOUNT_NAME} with a previous visit
+
+'${EXISTING_ACCOUNT}' has an existing account and a new account '${NEW_ACCOUNT}' is created and logged in
     [Tags]    Given
-    The user has a registered account with username ${ACCOUNT_NAME}
-    ${ACCOUNT_NAME} has a previously purchased ticket and tour
+    Snåla-Kalle has an account ${EXISTING_ACCOUNT} with a previous visit
+    User has created a new account ${NEW_ACCOUNT} and is logged in
 
 
-User has created a new account ${USERNAME} and is logged in
-    [Tags]    Given
-    The user has a registered account with username ${USERNAME}
-    ${USERNAME} is logged in
 
-
-User checks the price of a ${TICKET_TYPE} ticket and a tour
+When User checks the price on both accounts of a '${TICKET_TYPE}' ticket and a tour
     [Tags]    When
-    They add a 'regular' ticket to the cart
-    They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
-    They check the price of the items listed in the cart
-
-User changes account to ${USERNAME}
-    [Tags]    When
-    The user is not logged in, and is on the homepage
-    ${USERNAME} logs in
-    They should be logged in and be redirected to the homepage
-
+    User checks the price of a ${TICKET_TYPE} ticket and a tour
+    User changes account to ${OLD_ACCOUNT}
+    User checks the price of a ${TICKET_TYPE} ticket and a tour
 
 
 The price of both purchases should match each other
@@ -42,6 +31,30 @@ The price of both purchases should match each other
     Should Be Equal As Strings    ${prices}[0]    ${prices}[1]
     
 ## Dependencies for Snåla-Kalle ##
+
+Snåla-Kalle has an account ${ACCOUNT_NAME} with a previous visit
+    [Tags]    Given
+    The user has a registered account with username ${ACCOUNT_NAME}
+    Set Test Variable    ${OLD_ACCOUNT}   ${ACCOUNT_NAME}
+    ${ACCOUNT_NAME} has a previously purchased ticket and tour
+
+
+User has created a new account ${USERNAME} and is logged in
+    [Tags]    Given
+    The user has a registered account with username ${USERNAME}
+    ${USERNAME} is logged in
+
+User checks the price of a ${TICKET_TYPE} ticket and a tour
+    [Tags]    When
+    They add a 'regular' ticket to the cart
+    They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
+    They check the price of the items listed in the cart
+
+User changes account to ${USERNAME}
+    [Tags]    Internal
+    The user is not logged in, and is on the homepage
+    ${USERNAME} logs in
+    They should be logged in and be redirected to the homepage
 
 
 ${ACCOUNT_NAME} has a previously purchased ticket and tour
