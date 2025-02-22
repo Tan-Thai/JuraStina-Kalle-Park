@@ -7,16 +7,14 @@ Test Teardown    Close Browser
 
 *** Test Cases ***
 
-
+# so from my limited searching, its most conventional to have embedded arguments out in test-cases
+# but go to arguments the second we work internally --TT
 Snåla-Kalle cross checks pricing of a tour on a new vs an old account
     [Tags]    Daniel    Tan_refactor
     [Documentation]    Assures that there is no "first-time-visitor-discount", despite the rumours
     Given 'Snåla-Kalle' has an existing account and a new account 'Ståla-Nalle' is created and logged in
     When User checks the price on both accounts of a 'Regular' ticket and a tour
     Then The price of both purchases should match each other
-
-
-
 
 # Create og account
     # register > login

@@ -10,20 +10,22 @@ Variables    snåla-kalle-variables.py
 
 ## Scenario Specific ##
 
-
 '${EXISTING_ACCOUNT}' has an existing account and a new account '${NEW_ACCOUNT}' is created and logged in
     [Tags]    Given
-    Snåla-Kalle has an account ${EXISTING_ACCOUNT} with a previous visit
-    User has created a new account ${NEW_ACCOUNT} and is logged in
+    [Documentation]    Entrypoint. Setting test variables such as usernames for said test.
+    Set Test Variable    ${EXISTING_ACCOUNT}   ${EXISTING_ACCOUNT}
+    Set Test Variable    ${NEW_ACCOUNT}    ${NEW_ACCOUNT}
+    
+    Create an account with a previous purchase    ${EXISTING_ACCOUNT}
+    User creates a new account and is logged in    ${NEW_ACCOUNT}
 
 
-
-When User checks the price on both accounts of a '${TICKET_TYPE}' ticket and a tour
+User checks the price on both accounts of a '${TICKET_TYPE}' ticket and a tour
     [Tags]    When
-    User checks the price of a ${TICKET_TYPE} ticket and a tour
-    User changes account to ${OLD_ACCOUNT}
-    User checks the price of a ${TICKET_TYPE} ticket and a tour
-
+    [Documentation]    Simulates identical purchases between 2 accounts.
+    User checks the price of a ticket and a tour    ${TICKET_TYPE}
+    User changes account to ${EXISTING_ACCOUNT}
+    User checks the price of a ticket and a tour    ${TICKET_TYPE}
 
 The price of both purchases should match each other
     [Tags]    Then
@@ -31,34 +33,39 @@ The price of both purchases should match each other
     Should Be Equal As Strings    ${prices}[0]    ${prices}[1]
     
 ## Dependencies for Snåla-Kalle ##
-
-Snåla-Kalle has an account ${ACCOUNT_NAME} with a previous visit
-    [Tags]    Given
-    The user has a registered account with username ${ACCOUNT_NAME}
-    Set Test Variable    ${OLD_ACCOUNT}   ${ACCOUNT_NAME}
-    ${ACCOUNT_NAME} has a previously purchased ticket and tour
-
-
-User has created a new account ${USERNAME} and is logged in
-    [Tags]    Given
+Create an account with a previous purchase
+    [Tags]    Internal
+    [Arguments]    ${USERNAME}
+    [Documentation]    Creates a new account and simulates a purchase.
+    # Not sure if we should have an argument for password from all this way out.
     The user has a registered account with username ${USERNAME}
-    ${USERNAME} is logged in
+    Simulate a previous purchase on account    ${USERNAME}
 
-User checks the price of a ${TICKET_TYPE} ticket and a tour
-    [Tags]    When
-    They add a 'regular' ticket to the cart
+User creates a new account and is logged in
+    [Tags]    Internal    
+    [Arguments]    ${USERNAME}
+    The user has a registered account with username ${USERNAME}
+    Attempt to login and confirm that it succeeded    ${USERNAME}
+
+User checks the price of a ticket and a tour
+    [Tags]    Internal
+    [Arguments]    ${TICKET_TYPE}    #Tour type can be added here as well -TT
+    They add a '${TICKET_TYPE}' ticket to the cart
     They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
     They check the price of the items listed in the cart
 
 User changes account to ${USERNAME}
     [Tags]    Internal
     The user is not logged in, and is on the homepage
-    ${USERNAME} logs in
+    Navigate To The Login Page
+    Attempt To Login With These Credentials    ${USERNAME}
     They should be logged in and be redirected to the homepage
 
-
-${ACCOUNT_NAME} has a previously purchased ticket and tour
-    ${ACCOUNT_NAME} is logged in
+Simulate a previous purchase on account
+    [Tags]    Internal
+    [Arguments]    ${USERNAME}
+    [Documentation]    Will log in and go through a full purchase to simulate a "visit". Then logs out.
+    Attempt to login and confirm that it succeeded    ${USERNAME}
     They add a 'REGULAR' ticket to the cart
     They add a tour booked for next monday by navigating the calendar dropdown using the keyboard to the cart
     Proceed with the purchase at checkout
@@ -66,41 +73,39 @@ ${ACCOUNT_NAME} has a previously purchased ticket and tour
     The cart should be empty
     The user is not logged in, and is on the homepage
 
-
-${USERNAME} logs in
-    
+Navigate to the login page
+    [Tags]    Internal
     Wait Until Element Is Visible    ${nav_menu_login}    10s
     Click Element    ${nav_menu_login}
     Wait Until Element Is Visible    ${login_username_field}    10s
-    Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${LOGIN_PASSWORD_FIELD}    ${snålakalle_password}
-    Click Element    ${submit_login}
 
-
-${ACCOUNT_NAME} is logged in
-    They enter valid login credentials for ${ACCOUNT_NAME}
+Attempt to login and confirm that it succeeded
+    [Tags]    Internal
+    [Arguments]    ${USERNAME}
+    Attempt to login with these credentials    ${USERNAME}
     They should be logged in and be redirected to the homepage
-    
 ## Borrowed & refactored ##
 
 The user has a registered account with username ${USERNAME}
     [Tags]    Given
-    They attempt to register with username ${USERNAME}
+    Attempt to register with these credentials     ${USERNAME}
     They should be redirected to the login page
 
 
-They attempt to register with username ${USERNAME}
-    [Tags]    When
+Attempt to register with these credentials
+    [Tags]    Internal
+    [Arguments]    ${USERNAME}    ${PASSWORD}=${snålakalle_password}
     Click Element    ${nav_menu_register}
     Input Text    ${USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${PASSWORD_FIELD}    ${snålakalle_password}
+    Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
     Click Element    ${SUBMIT_REGISTER}
 
 
-They enter valid login credentials for ${USERNAME}
+Attempt to login with these credentials
     [Tags]    Internal
+    [Arguments]    ${USERNAME}    ${PASSWORD}=${snålakalle_password}
     Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${LOGIN_PASSWORD_FIELD}    ${snålakalle_password}
+    Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
     Click Element    ${submit_login}
 
 
@@ -110,12 +115,3 @@ They check the price of the items listed in the cart
     Click Element    ${checkout_button}
     ${total_price}    Handle Alert
     Append To List    ${prices}    ${total_price}
-
-    
-
-
-Snåla-Kalle Log Out
-    [Tags]    When
-    Wait Until Page Contains Element    ${nav_menu_logout}    timeout=10s
-    Click Element    ${nav_menu_logout}
-    Handle Alert
