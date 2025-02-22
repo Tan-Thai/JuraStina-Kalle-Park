@@ -13,14 +13,14 @@ Snåla-Kalle has an account ${ACCOUNT_NAME} with a previous visit
     ${ACCOUNT_NAME} has a previously purchased ticket and tour
 
 
-Snåla-Kalle has created a new account ${ACCOUNT_NAME} and is logged in
+Snåla-Kalle has created a new account ${USERNAME} and is logged in
     [Tags]    Given
-    The user has a registered account with username ${ACCOUNT_NAME}
-    ${ACCOUNT_NAME} is logged in
+    The user has a registered account with username ${USERNAME}
+    ${USERNAME} is logged in
 
     
 
-Snåla-Kalle checks the price of a ${TICKET_TYPE} ticket and a ${TOUR_TYPE} tour
+Snåla-Kalle checks the price of a ${TICKET_TYPE} ticket and a tour
     [Tags]    When
     They add a 'regular' ticket to the cart
     They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
@@ -28,7 +28,7 @@ Snåla-Kalle checks the price of a ${TICKET_TYPE} ticket and a ${TOUR_TYPE} tour
 
 Snåla-Kalle changes account to ${USERNAME}
     [Tags]    When
-    Snåla-Kalle Logs Out
+    The user is not logged in, and is on the homepage
     ${USERNAME} logs in
     They should be logged in and be redirected to the homepage
 
@@ -48,7 +48,6 @@ ${ACCOUNT_NAME} has a previously purchased ticket and tour
     Proceed with the purchase at checkout
     Handle Alert
     The cart should be empty
-    Snåla-Kalle Logs Out
     The user is not logged in, and is on the homepage
 
 
@@ -58,17 +57,14 @@ ${ACCOUNT_NAME} is logged in
 
 ${USERNAME} logs in
     
+    Wait Until Element Is Visible    ${nav_menu_login}    10s
     Click Element    ${nav_menu_login}
+    Wait Until Element Is Visible    ${login_username_field}    10s
     Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
     Input Text    ${LOGIN_PASSWORD_FIELD}    ${snålakalle_password}
     Click Element    ${submit_login}
 
-Snåla-Kalle Logs Out
-    [Tags]    When
-    Wait Until Page Contains Element    ${nav_menu_logout}    timeout=10s
-    Click Element    ${nav_menu_logout}
-    Handle Alert
-    Wait Until Element Is Visible    ${home_section}    10s
+
     
     
     

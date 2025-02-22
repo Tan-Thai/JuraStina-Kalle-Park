@@ -14,7 +14,7 @@ Snåla-Kalle cross checks pricing of a tour on a new vs an old account
     [Documentation]    Assures that there is no "first-time-visitor-discount", despite the rumours
     Given Snåla-Kalle has an account Snåla-Kalle with a previous visit
     And Snåla-Kalle has created a new account Ståla-Nalle and is logged in
-    When Snåla-Kalle checks the price of a 'REGULAR' ticket and a HERBIVORE tour
+    When Snåla-Kalle checks the price of a 'REGULAR' ticket and a tour
     And Snåla-Kalle changes account to Snåla-Kalle
-    And Snåla-Kalle checks the price of a 'REGULAR' ticket and a HERBIVORE tour
+    And Snåla-Kalle checks the price of a 'REGULAR' ticket and a tour
     Then The price of both purchases should match each other
