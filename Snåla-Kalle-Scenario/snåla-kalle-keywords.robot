@@ -7,26 +7,29 @@ Variables    snåla-kalle-variables.py
 
 *** Keywords ***
 
+
+## Scenario Specific ##
+
 Snåla-Kalle has an account ${ACCOUNT_NAME} with a previous visit
     [Tags]    Given
     The user has a registered account with username ${ACCOUNT_NAME}
     ${ACCOUNT_NAME} has a previously purchased ticket and tour
 
 
-Snåla-Kalle has created a new account ${USERNAME} and is logged in
+User has created a new account ${USERNAME} and is logged in
     [Tags]    Given
     The user has a registered account with username ${USERNAME}
     ${USERNAME} is logged in
 
     
 
-Snåla-Kalle checks the price of a ${TICKET_TYPE} ticket and a tour
+User checks the price of a ${TICKET_TYPE} ticket and a tour
     [Tags]    When
     They add a 'regular' ticket to the cart
     They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
     They check the price of the items listed in the cart
 
-Snåla-Kalle changes account to ${USERNAME}
+User changes account to ${USERNAME}
     [Tags]    When
     The user is not logged in, and is on the homepage
     ${USERNAME} logs in
@@ -39,6 +42,7 @@ The price of both purchases should match each other
     [Documentation]    
     Should Be Equal As Strings    ${prices}[0]    ${prices}[1]
     
+## Dependencies for Snåla-Kalle ##
 
 
 ${ACCOUNT_NAME} has a previously purchased ticket and tour
@@ -51,10 +55,6 @@ ${ACCOUNT_NAME} has a previously purchased ticket and tour
     The user is not logged in, and is on the homepage
 
 
-${ACCOUNT_NAME} is logged in
-    They enter valid login credentials for ${ACCOUNT_NAME}
-    They should be logged in and be redirected to the homepage
-
 ${USERNAME} logs in
     
     Wait Until Element Is Visible    ${nav_menu_login}    10s
@@ -65,8 +65,9 @@ ${USERNAME} logs in
     Click Element    ${submit_login}
 
 
-    
-    
+${ACCOUNT_NAME} is logged in
+    They enter valid login credentials for ${ACCOUNT_NAME}
+    They should be logged in and be redirected to the homepage
     
 ## Borrowed & refactored ##
 
