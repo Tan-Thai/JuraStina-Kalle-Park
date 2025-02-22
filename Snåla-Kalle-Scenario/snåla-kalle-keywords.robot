@@ -39,7 +39,7 @@ User changes account to ${USERNAME}
 
 The price of both purchases should match each other
     [Tags]    Then
-    [Documentation]    
+    [Documentation]    Assures that two remembered values are the same    ### Currently comparing whole checkout strings, not cost -DK
     Should Be Equal As Strings    ${prices}[0]    ${prices}[1]
     
 ## Dependencies for Snåla-Kalle ##
