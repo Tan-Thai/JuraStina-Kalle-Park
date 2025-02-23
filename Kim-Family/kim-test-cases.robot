@@ -31,7 +31,6 @@ Kim purchases tickets (2 adults, 2 children)
     Given The User Is Logged In
     When They add a family package of VIP tickets to the cart    # 2 adults, 2 children
     And Proceed with the purchase at checkout
-
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty    # Maybe not necessary, but good to check
     # Check validity for multiple tickets
@@ -41,9 +40,7 @@ Kim books and purchase 4 VIP safari tours
     [Tags]  Andreas    Tan_refactor
     Given The User Is Logged In
     And They add a family package of VIP tickets to the cart    # 2 adults, 2 children
-
     When They book 4 VIP safari tours on the weekend
     And Proceed with the purchase at checkout
-
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty    # Maybe not necessary here either, but good to check
