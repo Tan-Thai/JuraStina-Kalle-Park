@@ -88,7 +88,7 @@ Attempt to login and confirm that it succeeded
 
 # not sure if we should have this an an argument/rework it entirely -TT
 The user has a registered account with username ${USERNAME}
-    [Tags]    Given
+    [Tags]    Internal
     Attempt to register with these credentials     ${USERNAME}
     They should be redirected to the login page
 
