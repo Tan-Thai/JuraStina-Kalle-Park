@@ -19,7 +19,6 @@ Variables    snåla-kalle-variables.py
     Create an account with a previous purchase    ${EXISTING_ACCOUNT}
     User creates a new account and is logged in    ${NEW_ACCOUNT}
 
-
 User checks the price on both accounts of a '${TICKET_TYPE}' ticket and a tour
     [Tags]    When
     [Documentation]    Simulates identical purchases between 2 accounts.
@@ -37,7 +36,7 @@ Create an account with a previous purchase
     [Tags]    Internal
     [Arguments]    ${USERNAME}
     [Documentation]    Creates a new account and simulates a purchase.
-    # Not sure if we should have an argument for password from all this way out.
+    # Not sure if we should have an argument for password from all this way out. -TT
     The user has a registered account with username ${USERNAME}
     Simulate a previous purchase on account    ${USERNAME}
 
@@ -84,13 +83,14 @@ Attempt to login and confirm that it succeeded
     [Arguments]    ${USERNAME}
     Attempt to login with these credentials    ${USERNAME}
     They should be logged in and be redirected to the homepage
+
 ## Borrowed & refactored ##
 
+# not sure if we should have this an an argument/rework it entirely -TT
 The user has a registered account with username ${USERNAME}
     [Tags]    Given
     Attempt to register with these credentials     ${USERNAME}
     They should be redirected to the login page
-
 
 Attempt to register with these credentials
     [Tags]    Internal
@@ -100,14 +100,12 @@ Attempt to register with these credentials
     Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
     Click Element    ${SUBMIT_REGISTER}
 
-
 Attempt to login with these credentials
     [Tags]    Internal
     [Arguments]    ${USERNAME}    ${PASSWORD}=${snålakalle_password}
     Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
     Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
     Click Element    ${submit_login}
-
 
 They check the price of the items listed in the cart
     Click Element    ${nav_menu_cart}
