@@ -51,6 +51,6 @@ They book ${ticket_count} VIP safari tours on the weekend
     [Documentation]    Books the input amount of VIP safari tours for the next Sunday
     [Tags]    Andreas    Tan_refactor
     FOR    ${index}    IN RANGE    ${ticket_count}
-        They add a VIP tour booked for next Sunday to the cart   
+        They add a VIP tour booked for next Sunday to the cart
     END
     They should be able to see the tour in the cart 
