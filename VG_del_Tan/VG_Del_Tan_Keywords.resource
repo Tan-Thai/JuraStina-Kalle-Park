@@ -10,7 +10,6 @@ Documentation
 ...    Sorry ahead of time with the messy structure. Most of the keywords follow the same order as the testcases.
 
 *** Keywords ***
-
 The user is on the landing page
     [Tags]    Given    Low-Level
     [Documentation]    Ensures that the user has landed on the homepage
@@ -56,7 +55,9 @@ The user should be able to see the homepage filled with news
 The user is not logged in on any account
     [Tags]    Given    Low-Level
     [Documentation]    Ensures that the user is not logged in to any account by checking for a logout button
-    ${is_logged_in}=    Run Keyword And Return Status    Element Should Be Visible   ${nav_menu_logout}
+    ...                Logs out if there is an account logged in.
+    ...    Personal Note: This most likely should not exist since everything should be "set" and "expected"
+    ${is_logged_in}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${nav_menu_logout}    1s
     Run Keyword If    ${is_logged_in}    Click Element    ${nav_menu_logout}
     Run Keyword If    ${is_logged_in}    Handle Alert
     Wait Until Page Contains Element    ${nav_menu_login}    ${standard_timeout}

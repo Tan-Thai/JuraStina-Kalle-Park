@@ -44,7 +44,6 @@ The user login to an existing account with correct credentials
     [Tags]    Tan    Account-Login    Core-Functionality 
     [Documentation]    Test ensures that a registered account is able to be accessed if the credentials are valid
     Given The user has an existing account and is on the homepage
-    And The User Is Not Logged In On Any Account
     When The user attempts to log in with 'valid' credentials
     Then The user should get a success message and be redirected to the homepage    #combining this step due to the redirect being attached to login.
 
@@ -52,7 +51,6 @@ The user login to an existing account with incorrect credentials
     [Tags]    Tan    Account-Login    Core-Functionality 
     [Documentation]    Test ensures that a registered account requires correct credentials to be accessed
     Given The user has an existing account and is on the homepage
-    And The User Is Not Logged In On Any Account
     When The user attempts to log in with 'invalid' credentials
     Then The user should get an error message that tells them about invalid credentials
 
@@ -62,7 +60,6 @@ The user attempts to register an account with an already taken username
     ...    during registration. An error message should be returned.
     ...    The test also checks for case-sensitivity
     Given The user has an existing account and is on the homepage
-    And The User Is Not Logged In On Any Account
     When The user attempts to register with the same name as the existing account
     Then The user should get an error message that tells them that the username is taken
 
