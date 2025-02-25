@@ -39,6 +39,7 @@ register_section = '//*[@id="register-section"]'
 username_field = "id:reg-username"
 password_field = "id:reg-password"
 
+register_message_failed = "Username already exists. Please choose another."
 register_message_box = '//*[@id="register-message"]'
 submit_register = "css:#register-form button[type='submit']"
 # endregion

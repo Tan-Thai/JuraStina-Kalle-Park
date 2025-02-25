@@ -59,8 +59,8 @@ The user login to an existing account with incorrect credentials
 The user attempts to register an account with an already taken username
     [Tags]    Tan    Account-Login    Core-Functionality 
     [Documentation]    Test ensures that a unique username cannot be used again-
-    [Documentation]    during registration. An error message should be returned
-    [Documentation]    The test also checks for case-sensitivity
+    ...    during registration. An error message should be returned.
+    ...    The test also checks for case-sensitivity
     Given The user has an existing account and is on the homepage
     And The User Is Not Logged In On Any Account
     When The user attempts to register with the same name as the existing account

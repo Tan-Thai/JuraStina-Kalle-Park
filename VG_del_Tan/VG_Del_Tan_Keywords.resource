@@ -3,8 +3,14 @@ Library  SeleniumLibrary
 Library    ../resources/global_files/weekday_helper.py
 Variables  VG_Variables.py
 
-Documentation    Tags refer to when the keyword is used during a test-case. Low/High level refers to the complexity of the keyword, if it performs a simple check or calls for other keywords. Internal refers to when the keyword is called upon within this file
+Documentation    
+...    Tags refer to when the keyword is used during a test-case. 
+...    Low/High level refers to the complexity of the keyword, if it performs a simple check or calls for other keywords.
+...    refers to when the keyword is called upon within this file
+...    Sorry ahead of time with the messy structure. Most of the keywords follow the same order as the testcases.
+
 *** Keywords ***
+
 The user is on the landing page
     [Tags]    Given    Low-Level
     [Documentation]    Ensures that the user has landed on the homepage
@@ -73,7 +79,9 @@ The user has an existing account and is on the homepage
 
 The user attempts to log in with '${login_type}' credentials
     [Tags]    When    High_Level
-    [Documentation]    Performs a valid/invalid login based on the embedded argument. The wait is to allow the verify message to pass.
+    [Documentation]    Performs a valid/invalid login based on the embedded argument.
+    ...    The wait is to allow the verify message to pass.
+
     IF    "${login_type.lower()}" == "valid"
         Login With Valid Credentials
         Sleep    1.5s
@@ -85,14 +93,27 @@ The user attempts to log in with '${login_type}' credentials
     END
 
 The user should get a success message and be redirected to the homepage
-    [Tags]    Given    High-Level
+    [Tags]    Then    High-Level
     [Documentation]    Checks the message box during login and ensures that the logout button exists after it succeeds
     Check Class In Message Section    ${login_message}    ${successful_message}
     Wait Until Element Is Visible    ${nav_menu_logout}
 
 The user should get an error message that tells them about invalid credentials
-    [Tags]    Given    High-Level
+    [Tags]    Then    High-Level
+    [Documentation]    Checks the message box during login to ensure that an error gets printed
     Check Class In Message Section    ${login_message}    ${failing_message}
+    
+The user attempts to register with the same name as the existing account
+    [Tags]    When    High-Level
+    [Documentation]    Performs identical functions as the registration, eg using the exact same username and password
+    Navigate And Register With Valid Credentials
+    
+The user should get an error message that tells them that the username is taken
+    [Tags]    Then    High-Level
+    [Documentation]    Ensures that an error message gets printed with a message telling us that the username is taken
+    Check Class In Message Section    ${register_message_box}    ${failing_message}
+    Check Text In Message Section    ${register_message_box}    ${register_message_failed}
+    
     
 #### Strictly Internal Keywords ####
 Navigate and register with valid credentials
@@ -139,4 +160,13 @@ Check class in message section
     Wait Until Element Is Visible    ${message_locator}    ${standard_timeout}
     ${class_attribute}=     Get Element Attribute    ${message_locator}    class
     Should Contain    ${class_attribute}    ${expected_class_name}    The class attribute was NOT correct.
+    
+Check Text In Message Section
+    [Tags]    Internal    Low-Level
+    [Documentation]    Takes in a locator and string, checks if locator contains the string within itself
+    [Arguments]    ${message_locator}    ${expected_string}
+    Wait Until Element Is Visible    ${message_locator}    ${standard_timeout}
+    ${actual_string}=    Get Text    ${message_locator}
+    # lower here makes it case insensitive. But it might be better to be exact for tests like these?
+    Should Contain    ${actual_string.lower()}    ${expected_string.lower()}
 ##############################
