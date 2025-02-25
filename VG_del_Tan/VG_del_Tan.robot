@@ -14,8 +14,8 @@ Test Teardown    Close Browser
 The user sees the frontpage with news when entering the website
     [Tags]    Tan    FrontPage-News    Core-Functionality 
     [Documentation]    Test ensures that the frontpage is functional and actually shows the expected news.
-    Given The User Is On The Landing Page
-    When The User Loads The Landing Page
+    Given The User Is On The Landing Page    #the given/when here is a bit awkward
+    When The User Views The Landing Page    #since it includes the step of opening and entering the homepage
     Then The User Should See News Articles Displayed On The Homepage
 
 The user sees the frontpage with news after registering and logging in
@@ -43,14 +43,16 @@ The user registers an account
 The user login to an existing account with correct credentials
     [Tags]    Tan    Account-Login    Core-Functionality 
     [Documentation]    Test ensures that a registered account is able to be accessed if the credentials are valid
-    Given The user has an existing account
+    Given The user has an existing account and is on the homepage
+    And The User Is Not Logged In On Any Account
     When The user attempts to log in with 'valid' credentials
     Then The user should get a success message and be redirected to the homepage    #combining this step due to the redirect being attached to login.
 
 The user login to an existing account with incorrect credentials
     [Tags]    Tan    Account-Login    Core-Functionality 
     [Documentation]    Test ensures that a registered account requires correct credentials to be accessed
-    Given The user has an existing account
+    Given The user has an existing account and is on the homepage
+    And The User Is Not Logged In On Any Account
     When The user attempts to log in with 'invalid' credentials
     Then The user should get an error message that tells them about invalid credentials
 
@@ -59,7 +61,8 @@ The user attempts to register an account with an already taken username
     [Documentation]    Test ensures that a unique username cannot be used again-
     [Documentation]    during registration. An error message should be returned
     [Documentation]    The test also checks for case-sensitivity
-    Given The user has an existing account
+    Given The user has an existing account and is on the homepage
+    And The User Is Not Logged In On Any Account
     When The user attempts to register with the same name as the existing account
     Then The user should get an error message that tells them that the username is taken
 
