@@ -4,7 +4,7 @@ Resource    VG_Del_Tan_Keywords.resource
 Test Setup    Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser
 
-
+Test Tags    Suite VG-Tan
 *** Test Cases ***
 ## Check that frontpage contains news ##
 # The user should be able to see the current news when landing on the front page,

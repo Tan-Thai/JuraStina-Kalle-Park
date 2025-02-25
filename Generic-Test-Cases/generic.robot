@@ -5,6 +5,7 @@ Variables  variables.py
 Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser
 
+Test Tags    Suite Generic-Tests
 *** Test Cases ***
 # not sure about the syntax, but I think its common to write keywords as a normal sentence. -TT
 # Intellisense in pycharm says otherwise tho, that it should be written as a title.

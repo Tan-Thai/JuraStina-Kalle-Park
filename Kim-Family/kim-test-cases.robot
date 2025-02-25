@@ -7,6 +7,7 @@ Variables  kim-variables.py
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser
 
+Test Tags    Suite Kim-Family
 *** Test Cases ***
 Create User
     [Documentation]  User should be able to create an account

@@ -5,6 +5,7 @@ Resource    snåla-kalle-keywords.robot
 Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser
 
+Test Tags   Suite Snala-Kalle
 *** Test Cases ***
 
 # so from my limited searching, its most conventional to have embedded arguments out in test-cases
