@@ -1,7 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ../Generic-Test-Cases/generic-keywords.robot
-Variables  ../Generic-Test-Cases/variables.py
+Resource    generic-keywords.robot
+Variables  ../python-object-models/variables.py
 
 *** Keywords ***
 They add two 'VIP' adult tickets to the cart

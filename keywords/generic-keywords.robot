@@ -1,7 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
-Library    ../resources/global_files/weekday_helper.py
-Variables  variables.py
+Library    ../python-object-models/weekday_helper.py
+Variables  ../python-object-models/variables.py
 
 *** Keywords ***
 

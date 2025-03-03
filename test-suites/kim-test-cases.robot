@@ -1,9 +1,9 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ../Generic-Test-Cases/generic-keywords.robot
-Resource    kim-keywords.robot
-Variables  ../Generic-Test-Cases/variables.py
-Variables  kim-variables.py
+Resource    ../keywords/generic-keywords.robot
+Resource    ../keywords/kim-keywords.robot
+Variables  ../python-object-models/variables.py
+Variables  ../python-object-models/kim-variables.py
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser
 

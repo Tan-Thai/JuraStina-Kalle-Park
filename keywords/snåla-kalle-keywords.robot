@@ -1,7 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library    Collections
-Resource    ../Generic-Test-Cases/generic-keywords.robot
+Resource    generic-keywords.robot
 Variables    snåla-kalle-variables.py
 
 

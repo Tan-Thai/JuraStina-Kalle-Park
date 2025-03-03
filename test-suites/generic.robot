@@ -1,7 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    generic-keywords.robot
-Variables  variables.py
+Resource    ../keywords/generic-keywords.robot
+Variables  ../python-object-models/variables.py
 Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser
 
