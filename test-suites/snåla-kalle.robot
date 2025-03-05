@@ -1,8 +1,11 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ../keywords/generic-keywords.robot
+
+Resource    ../keywords/registration-keywords.resource
 Resource    ../keywords/snåla-kalle-keywords.robot
+
 Variables    ../python-object-models/snåla-kalle-variables.py
+
 Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser
 

@@ -1,6 +1,9 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    generic-keywords.robot
+
+Resource    tour.keywords.resource
+Resource    ticket-keywords.resource
+
 Variables  ../python-object-models/variables.py
 
 *** Keywords ***

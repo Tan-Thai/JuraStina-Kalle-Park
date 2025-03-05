@@ -1,8 +1,13 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ../keywords/generic-keywords.robot
+Resource    ../keywords/registration-keywords.resource
+Resource    ../keywords/login-keywords.resource
+Resource    ../keywords/ticket-keywords.resource
+Resource    ../keywords/tour.keywords.resource
+Resource    ../keywords/cart-keywords.resource
+
 Variables  ../python-object-models/variables.py
-Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
+Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser
 
 *** Test Cases ***

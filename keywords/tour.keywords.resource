@@ -13,7 +13,7 @@ They add a tour booked for next ${chosen_day} by navigating the calendar dropdow
     Handle Alert
 
 Selecting ${chosen_day} from dropdown calendar
-    [Tags]    Under_review    Daniel    Tan_refactor
+    [Tags]    Daniel    Tan_refactor
     Set Test Variable    ${selected_day}    ${chosen_day}    #Sets a "file wide" variable so it can be accessed later on.
     ${input_count}    get_weekday_delta_offset    ${chosen_day}    #importing library of our file allows calls to funcs. -TT
     # DESPERATION KICKING IN - DK
@@ -24,7 +24,7 @@ Selecting ${chosen_day} from dropdown calendar
     Press Keys    None    Enter
 
 Navigate ${amount_of_steps} steps to the right in the calendar
-    [Tags]    Under_review    Daniel    Tan_refactor
+    [Tags]    Daniel    Tan_refactor
     [Documentation]    Input solution for the dynamic calendar ui in javascript.
     FOR    ${key_press}    IN RANGE    ${amount_of_steps}
         Press Keys    None    ARROW_RIGHT    #i got trolled by documentation. i assumed none was literally no text -TT

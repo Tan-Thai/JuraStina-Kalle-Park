@@ -1,13 +1,15 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library    Collections
-Resource    generic-keywords.robot
-Variables    snåla-kalle-variables.py
 
+Resource    tour.keywords.resource
+Resource    ticket-keywords.resource
+Resource    login-keywords.resource
+Resource    cart-keywords.resource
+
+Variables    ../python-object-models/snåla-kalle-variables.py
 
 *** Keywords ***
-
-
 ## Scenario Specific ##
 
 '${EXISTING_ACCOUNT}' has an existing account and a new account '${NEW_ACCOUNT}' is created and logged in
