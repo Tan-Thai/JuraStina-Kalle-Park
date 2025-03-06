@@ -45,7 +45,7 @@ They add a VIP tour booked for next ${chosen_day} to the cart
     Click Element    ${nav_menu_safari}
     Wait Until Element Is Visible    ${safari_section}    10s
     Select From List By Index    ${safari_type_dropdown}    1 
-    Selecting ${chosen_day} from dropdown calendar
+    Select ${chosen_day} from dropdown calendar
     Click Element    ${add_safari_to_cart_button}
     Handle Alert   
 
