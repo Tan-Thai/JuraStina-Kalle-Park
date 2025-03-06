@@ -8,9 +8,9 @@ They add a tour booked for next ${chosen_day} by navigating the calendar dropdow
     Navigate To Tour Page
     Wait For Safari Section
     Set Test Variable    ${selected_day}    ${chosen_day}
-    ${input_count}    get_weekday_delta_offset    ${chosen_day}
+    ${amount_of_steps}    get_weekday_delta_offset    ${chosen_day}
     Open Calendar Dropdown
-    Navigate Calendar Steps    ${input_count}
+    Navigate ${amount_of_steps} steps to the right in the calendar
     Confirm Calendar Selection
     Add Tour To Cart
     Verify Tour Added To Cart Message

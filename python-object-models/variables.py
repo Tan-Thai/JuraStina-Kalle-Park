@@ -47,7 +47,7 @@ nav_menu_cart = "id:cart-nav"
 # endregion
 
 # region Ticket variables
-ticket_section = '//*[@id="ticket-section"]'
+ticket_section = '//*[@id="tickets-section"]'
 add_ticket_to_cart_button = "css:#ticket-form > button[type='submit']"
 # endregion
 

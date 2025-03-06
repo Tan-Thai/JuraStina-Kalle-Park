@@ -57,7 +57,7 @@ User checks the price of a ticket and a tour
 
 User changes account to ${USERNAME}
     [Tags]    Internal
-    The user is not logged in, and is on the homepage
+    Log Out User
     Navigate To The Login Page
     Attempt To Login With These Credentials    ${USERNAME}
     They should be logged in and be redirected to the homepage
@@ -72,7 +72,7 @@ Simulate a previous purchase on account
     Proceed with the purchase at checkout
     Handle Alert
     The cart should be empty
-    The user is not logged in, and is on the homepage
+    Log Out User    ## "The user is not logged in, and is on the homepage" previously
 
 Navigate to the login page
     [Tags]    Internal

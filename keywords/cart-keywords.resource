@@ -1,23 +1,25 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    ../python-object-models/weekday_helper.py
-Variables    ../python-object-models/variables.py
 
+Resource    ../pages/cart_page.resource
+Resource    common-keywords.resource
+
+Variables    ../python-object-models/variables.py
+#Known Issue: Buying a ticket and then choosing a tour is not working. (blame Max) --TT
 *** Keywords ***
 Proceed with the purchase at checkout
     [Tags]    When
-    #Known Issue: Buying a ticket and then choosing a tour is not working. (blame Max) --TT
-    Click Element    ${nav_menu_cart}
-    Wait Until Element Is Visible    ${cart_section}    10s
-    Click Button    ${checkout_button}
+    Navigate To Cart Page
+    Wait For Cart Section
+    Proceed To Checkout
 
 They should be able to see a checkout summary with their purchased items
     [Tags]    Then
-    ${message} =    Handle Alert    #We handle + save the string attached in the alert here.
-    Should Contain    ${message}    Checkout Summary:
+    Verify Checkout Summary    #We handle + save the string attached in the alert here.
 
 The cart should be empty
     [Tags]    And
-    Click Element    ${nav_menu_cart}
-    Wait Until Element Is Visible    ${cart_section}    timeout=10s
-    Element Should Contain    ${cart_details}    Your cart is empty
+    Navigate To Cart Page
+    Wait For Cart Section
+    Verify Cart Is Empty

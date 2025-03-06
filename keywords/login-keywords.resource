@@ -52,3 +52,8 @@ They should be redirected to the homepage and see the login button
     [Tags]    Then
     Wait For Home Section
     Wait For Login Nav-Button
+
+Log Out User    #potentially redundant
+    Click Element    ${nav_menu_logout}
+    Handle Alert
+    Wait For Login Nav-Button
