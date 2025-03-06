@@ -58,7 +58,9 @@ User checks the price of a ticket and a tour
 User changes account to ${USERNAME}
     [Tags]    Internal
     Log Out User
-    Navigate To The Login Page
+    Wait For Login Nav-Button
+    Navigate To Login Page
+    Wait For Login Section
     Login With These Credentials    ${USERNAME}    ${snålakalle_password}
     They should be logged in and be redirected to the homepage
 
@@ -73,12 +75,6 @@ Simulate a previous purchase on account
     Handle Alert
     The cart should be empty
     Log Out User    ## "The user is not logged in, and is on the homepage" previously
-
-Navigate to the login page
-    [Tags]    Internal
-    Wait Until Element Is Visible    ${nav_menu_login}    10s
-    Click Element    ${nav_menu_login}
-    Wait Until Element Is Visible    ${login_username_field}    10s
 
 Attempt to login and confirm that it succeeded
     [Tags]    Internal

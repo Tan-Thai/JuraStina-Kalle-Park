@@ -35,3 +35,5 @@ Navigate To Tour Page
 Navigate To Registration Page
     Click Element    ${nav_menu_register}
 
+Navigate to Login Page
+    Click Element    ${nav_menu_login}
