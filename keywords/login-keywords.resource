@@ -34,6 +34,12 @@ They should see an error message indicating login failure
     [Tags]    Then
     Wait For Login Error Message
 
+Login with these credentials
+    [Arguments]    ${username}    ${password}
+    Enter Username In Login Field    ${username}
+    Enter Password In Login Field    ${password}
+    Click Login Button
+
 ### Logout ###
 The User Is Logged In
     [Tags]    Given

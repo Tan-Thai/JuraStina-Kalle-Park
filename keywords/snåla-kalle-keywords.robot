@@ -59,7 +59,7 @@ User changes account to ${USERNAME}
     [Tags]    Internal
     Log Out User
     Navigate To The Login Page
-    Attempt To Login With These Credentials    ${USERNAME}
+    Login With These Credentials    ${USERNAME}    ${snålakalle_password}
     They should be logged in and be redirected to the homepage
 
 Simulate a previous purchase on account
@@ -83,7 +83,8 @@ Navigate to the login page
 Attempt to login and confirm that it succeeded
     [Tags]    Internal
     [Arguments]    ${USERNAME}
-    Attempt to login with these credentials    ${USERNAME}
+    Log To Console    ${USERNAME}
+    Login With These Credentials    ${USERNAME}    ${snålakalle_password}
     They should be logged in and be redirected to the homepage
 
 ## Borrowed & refactored ##
@@ -91,27 +92,13 @@ Attempt to login and confirm that it succeeded
 # not sure if we should have this an an argument/rework it entirely -TT
 The user has a registered account with username ${USERNAME}
     [Tags]    Internal
-    Attempt to register with these credentials     ${USERNAME}
+    Navigate To Registration Page
+    Register with these credentials    ${USERNAME}    ${snålakalle_password}
     They should be redirected to the login page
 
-Attempt to register with these credentials
-    [Tags]    Internal
-    [Arguments]    ${USERNAME}    ${PASSWORD}=${snålakalle_password}
-    Click Element    ${nav_menu_register}
-    Input Text    ${USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${PASSWORD_FIELD}    ${PASSWORD}
-    Click Element    ${SUBMIT_REGISTER}
-
-Attempt to login with these credentials
-    [Tags]    Internal
-    [Arguments]    ${USERNAME}    ${PASSWORD}=${snålakalle_password}
-    Input Text    ${LOGIN_USERNAME_FIELD}    ${USERNAME}
-    Input Text    ${LOGIN_PASSWORD_FIELD}    ${PASSWORD}
-    Click Element    ${submit_login}
-
 They check the price of the items listed in the cart
-    Click Element    ${nav_menu_cart}
-    Wait Until Element Is Visible    ${checkout_button}    10s
-    Click Element    ${checkout_button}
+    Navigate To Cart Page
+    Wait For Checkout Button
+    Click Checkout Button
     ${total_price}    Handle Alert
     Append To List    ${prices}    ${total_price}

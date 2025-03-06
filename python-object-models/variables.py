@@ -3,7 +3,7 @@ import os
 
 # region OS related variables
 current_directory = os.getcwd().replace('\\', '/')
-browser = "headlesschrome"
+browser = "chrome"
 url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 

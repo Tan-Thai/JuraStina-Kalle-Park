@@ -20,3 +20,9 @@ They attempt to register with valid credentials
 They should be redirected to the login page
     [Tags]    Then
     Wait For Login Section
+    
+Register with these credentials
+    [Arguments]    ${username}    ${password}
+    Enter Username in register field    ${username}
+    Enter Password in register field    ${password}
+    Click Submit Button
