@@ -5,6 +5,8 @@ Resource    ../keywords/registration-keywords.resource
 Resource    ../keywords/login-keywords.resource
 Resource    ../keywords/cart-keywords.resource
 Resource    ../keywords/kim-keywords.robot
+Resource    ../keywords/tour.keywords.resource
+Resource    ../keywords/ticket-keywords.resource
 
 Variables  ../python-object-models/variables.py
 Variables  ../python-object-models/kim-variables.py

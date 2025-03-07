@@ -73,3 +73,6 @@ next_monday_date_TEST = "02-28-2025" ## I DON'T GET THIS ONE, WHY IS AMERICAN IN
 # region Checkout variables
 checkout_button = '//*[@id="checkout-button"]'
 # endregion
+
+ticket_type_dropdown = "id:ticket-type"
+ticket_quantity = "id:ticket-quantity"

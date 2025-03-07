@@ -21,3 +21,11 @@ They should be able to see the tour in the cart
     Wait For Cart Section
     ${expected_date} =    get_upcoming_target_weekday_date    ${selected_day}
     Verify Cart Contains Tour    ${expected_date}
+
+They add a VIP tour booked for next ${chosen_day} to the cart
+    [Documentation]    Books a single VIP safari tour for the specified day
+    Add VIP Tour    ${chosen_day}
+
+They book ${ticket_count} VIP safari tours on the weekend
+    [Documentation]    Books the input amount of VIP safari tours for the next Sunday
+    Add Multiple VIP Tours    ${ticket_count}    Sunday
