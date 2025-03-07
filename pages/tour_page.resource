@@ -40,3 +40,18 @@ Navigate ${amount_of_steps} steps to the right in the calendar
         Press Keys    None    ARROW_RIGHT    #i got trolled by documentation. i assumed none was literally no text -TT
         #Sleep    0.1s    #Use this if you want to see the actual movement during calendar selection. -TT
     END
+
+Add VIP Tour
+    [Arguments]    ${chosen_day}
+    Click Element    ${nav_menu_safari}
+    Wait Until Element Is Visible    ${safari_section}    10s
+    Select From List By Index    ${safari_type_dropdown}    1 
+    Select ${chosen_day} from dropdown calendar
+    Click Element    ${add_safari_to_cart_button}
+    Handle Alert
+
+Add Multiple VIP Tours
+    [Arguments]    ${count}    ${chosen_day}
+    FOR    ${index}    IN RANGE    ${count}
+        Add VIP Tour    ${chosen_day}
+    END

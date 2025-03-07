@@ -38,3 +38,23 @@ Verify Cart Contains Ticket
     ${listed_items}    Get Text    ${cart_details}
     Should Not Contain    ${listed_items}    Your cart is empty
     Should Contain    ${listed_items}    Ticket
+
+Add VIP Adult Tickets
+    [Arguments]    ${quantity}
+    Click Element    ${nav_menu_ticket}
+    Wait Until Element Is Visible    ${ticket_category_dropdown}    10s
+    Select From List By Value    ${ticket_category_dropdown}    VIP
+    Select From List By Index    ${ticket_type_dropdown}    0
+    Input Text    ${ticket_quantity}    ${quantity}
+    Click Element    ${add_ticket_to_cart_button}
+    Handle Alert
+
+Add VIP Child Tickets
+    [Arguments]    ${quantity}
+    Click Element    ${nav_menu_ticket}
+    Wait Until Element Is Visible    ${ticket_category_dropdown}    10s
+    Select From List By Value    ${ticket_category_dropdown}    VIP
+    Select From List By Index    ${ticket_type_dropdown}    1
+    Input Text    ${ticket_quantity}    ${quantity}
+    Click Element    ${add_ticket_to_cart_button}
+    Handle Alert
