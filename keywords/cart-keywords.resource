@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    ../python-object-models/weekday_helper.py
+Library    Collections
 
 Resource    ../pages/cart_page.resource
 Resource    common-keywords.resource
@@ -23,3 +24,11 @@ The cart should be empty
     Navigate To Cart Page
     Wait For Cart Section
     Verify Cart Is Empty
+
+They check the price of the items listed in the cart
+    [Tags]    
+    Navigate To Cart Page
+    Wait For Checkout Button
+    Click Checkout Button
+    ${total_price}    Handle Alert
+    Append To List    ${prices}    ${total_price}

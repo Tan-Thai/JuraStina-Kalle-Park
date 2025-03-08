@@ -1,6 +1,4 @@
 *** Settings ***
-Library    Collections
-
 Resource    tour.keywords.resource
 Resource    ticket-keywords.resource
 Resource    login-keywords.resource
@@ -14,7 +12,6 @@ Variables    ../python-object-models/snåla-kalle-variables.py
 Snåla-Kalle has an existing account and is logged in to a new account "Ståla-Nalle"
     [Tags]    Given
     [Documentation]    Entrypoint. Setting test variables such as usernames for said test.
-    
     Create an account with a previous purchase    ${snålakalle_old_username}
     User creates a new account and is logged in    ${snålakalle_new_username}
 
@@ -29,7 +26,8 @@ The price of both purchases should match each other
     [Tags]    Then
     [Documentation]    Assures that two remembered values are the same
     Should Be Equal As Strings    ${prices}[0]    ${prices}[1]
-    
+
+
 ## Dependencies for Snåla-Kalle ##
 Create an account with a previous purchase
     [Tags]    Internal
@@ -41,7 +39,9 @@ Create an account with a previous purchase
 User creates a new account and is logged in
     [Tags]    Internal    
     [Arguments]    ${USERNAME}
-    The user has a registered account with username ${USERNAME}
+        Navigate To Registration Page
+    Register with these credentials    ${USERNAME}    ${snålakalle_password}
+    They should be redirected to the login page
     Attempt to login and confirm that it succeeded    ${USERNAME}
 
 User checks the price of a ticket and a tour
@@ -79,18 +79,10 @@ Attempt to login and confirm that it succeeded
     Login With These Credentials    ${USERNAME}    ${snålakalle_password}
     They should be logged in and be redirected to the homepage
 
-## Borrowed & refactored ##
-
-# not sure if we should have this an an argument/rework it entirely -TT
 The user has a registered account with username ${USERNAME}
     [Tags]    Internal
     Navigate To Registration Page
     Register with these credentials    ${USERNAME}    ${snålakalle_password}
     They should be redirected to the login page
 
-They check the price of the items listed in the cart
-    Navigate To Cart Page
-    Wait For Checkout Button
-    Click Checkout Button
-    ${total_price}    Handle Alert
-    Append To List    ${prices}    ${total_price}
+
