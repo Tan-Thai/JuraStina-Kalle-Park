@@ -1,10 +1,10 @@
 *** Settings ***
-Resource    tour.keywords.resource
-Resource    ticket-keywords.resource
-Resource    login-keywords.resource
-Resource    cart-keywords.resource
+Resource    ${EXECDIR}/keywords/tour.keywords.resource
+Resource    ${EXECDIR}/keywords/ticket-keywords.resource
+Resource    ${EXECDIR}/keywords/login-keywords.resource
+Resource    ${EXECDIR}/keywords/cart-keywords.resource
 
-Variables    ../python-object-models/snåla-kalle-variables.py
+Variables    ${EXECDIR}/python-object-models/snåla-kalle-variables.py
 
 *** Keywords ***
 ## Scenario Specific ##

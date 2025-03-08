@@ -1,8 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    ../python-object-models/weekday_helper.py
+Library    ${EXECDIR}/python-object-models/weekday_helper.py
 
-Variables    ../python-object-models/variables.py
+Variables    ${EXECDIR}/python-object-models/variables.py
 *** Keywords ***
 Open Calendar Dropdown
     Press Keys    ${safari_date_input_field}    SPACE

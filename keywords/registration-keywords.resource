@@ -1,9 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../pages/registration_page.resource
-Resource    common-keywords.resource
+Resource    ${EXECDIR}/pages/registration_page.resource
+Resource    ${EXECDIR}/keywords/common-keywords.resource
 
-Variables    ../python-object-models/variables.py
+Variables    ${EXECDIR}/python-object-models/variables.py
 *** Keywords ***
 The user is not logged in, and is on the homepage
     [Tags]    Given

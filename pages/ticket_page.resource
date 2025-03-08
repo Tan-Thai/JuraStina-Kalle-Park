@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-Variables    ../python-object-models/variables.py
+Variables    ${EXECDIR}/python-object-models/variables.py
 
 *** Keywords ***
 Navigate To Ticket Page

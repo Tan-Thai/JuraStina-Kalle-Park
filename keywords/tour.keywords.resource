@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../pages/tour_page.resource
+Resource    ${EXECDIR}/pages/tour_page.resource
 Resource    common-keywords.resource
 
 *** Keywords ***

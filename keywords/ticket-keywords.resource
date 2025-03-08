@@ -1,6 +1,6 @@
 *** Settings ***
-Resource    ../pages/ticket_page.resource
-Resource    common-keywords.resource
+Resource    ${EXECDIR}/pages/ticket_page.resource
+Resource    ${EXECDIR}/keywords/common-keywords.resource
 
 *** Keywords ***
 They add a '${ticket_type}' ticket to the cart

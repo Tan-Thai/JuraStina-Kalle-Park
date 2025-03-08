@@ -1,12 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    ../python-object-models/weekday_helper.py
+Library    ${EXECDIR}/python-object-models/weekday_helper.py
 Library    Collections
 
-Resource    ../pages/cart_page.resource
-Resource    common-keywords.resource
+Resource    ${EXECDIR}/pages/cart_page.resource
+Resource    ${EXECDIR}/keywords/common-keywords.resource
 
-Variables    ../python-object-models/variables.py
+Variables    ${EXECDIR}/python-object-models/variables.py
 #Known Issue: Buying a ticket and then choosing a tour is not working. (blame Max) --TT
 *** Keywords ***
 Proceed with the purchase at checkout
