@@ -1,0 +1,22 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - template: templates/install-dependencies.yaml
+
+  # Run all tests
+  - script: |
+      robot --output results/logs/output_all_test.xml --log results/logs/log_all_test.html --report results/logs/report_all_test.html tests/
+    displayName: 'Run All Tests'
+
+  # Publish the Robot Framework reports as pipeline artifacts.
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/results/logs/'
+      artifactName: 'robot-reports-main'
+    displayName: 'Publish Robot Framework Reports'
+
+
