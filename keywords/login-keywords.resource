@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ${EXECDIR}/pages/login_page.resource
+Resource    ${EXECDIR}/pages_object_model/login_page.resource
 Resource    ${EXECDIR}/keywords/common-keywords.resource
 Resource    ${EXECDIR}/keywords/registration-keywords.resource
 

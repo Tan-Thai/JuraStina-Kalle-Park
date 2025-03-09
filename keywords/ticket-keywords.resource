@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ${EXECDIR}/pages/ticket_page.resource
+Resource    ${EXECDIR}/pages_object_model/ticket_page.resource
 Resource    ${EXECDIR}/keywords/common-keywords.resource
 
 *** Keywords ***

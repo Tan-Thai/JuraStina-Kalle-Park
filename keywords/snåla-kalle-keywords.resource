@@ -4,7 +4,7 @@ Resource    ${EXECDIR}/keywords/ticket-keywords.resource
 Resource    ${EXECDIR}/keywords/login-keywords.resource
 Resource    ${EXECDIR}/keywords/cart-keywords.resource
 
-Variables    ${EXECDIR}/python-object-models/snåla-kalle-variables.py
+Variables    ${EXECDIR}/python_objects/snåla-kalle-variables.py
 
 *** Keywords ***
 ## Scenario Specific ##

@@ -7,8 +7,8 @@ Resource    ${EXECDIR}/keywords/cart-keywords.resource
 Resource    ${EXECDIR}/keywords/tour.keywords.resource
 Resource    ${EXECDIR}/keywords/ticket-keywords.resource
 
-Variables  ${EXECDIR}/python-object-models/variables.py
-Variables  ${EXECDIR}/python-object-models/kim-variables.py
+Variables  ${EXECDIR}/python_objects/variables.py
+Variables  ${EXECDIR}/python_objects/kim-variables.py
 
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser

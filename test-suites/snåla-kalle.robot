@@ -4,7 +4,6 @@ Library  SeleniumLibrary
 Resource    ${EXECDIR}/keywords/registration-keywords.resource
 Resource    ${EXECDIR}/keywords/snåla-kalle-keywords.resource
 
-
 Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser
 

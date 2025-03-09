@@ -6,7 +6,7 @@ Resource    ${EXECDIR}/keywords/ticket-keywords.resource
 Resource    ${EXECDIR}/keywords/tour.keywords.resource
 Resource    ${EXECDIR}/keywords/cart-keywords.resource
 
-Variables  ${EXECDIR}/python-object-models/variables.py
+Variables  ${EXECDIR}/python_objects/variables.py
 
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser

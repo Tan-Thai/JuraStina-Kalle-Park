@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-Variables    ${EXECDIR}/python-object-models/variables.py
+Variables    ${EXECDIR}/python_objects/variables.py
 
 *** Keywords ***
 ### section ###
