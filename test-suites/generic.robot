@@ -15,7 +15,7 @@ Test Teardown    Close Browser
 # not sure about the syntax, but I think its common to write keywords as a normal sentence. -TT
 # Intellisense in pycharm says otherwise tho, that it should be written as a title.
 User registers a new account successfully
-    [Tags]    Andreas    Tan_Refactor
+    [Tags]    Andreas    Tan_Refactor    new-feature
     [Documentation]    Assures that the user is able to register an account.
     Given The user is not logged in, and is on the homepage
     When They attempt to register with valid credentials
