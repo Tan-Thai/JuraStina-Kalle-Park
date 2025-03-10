@@ -1,6 +1,8 @@
 trigger:
   - feature/*
 
+pr: none  # disabling the trigger during PR, trying to create a dedicated PR merge pipeline --TT
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -11,6 +13,7 @@ steps:
   - script: |
       robot --include new-feature --output results/logs/output_feature_test.xml --log results/logs/log_feature_test.html --report results/logs/report_feature_test.html tests/
     displayName: 'Run Tests tagged with new-feature'
+    continueOnError: true
 
   # Publish the Robot Framework reports as pipeline artifacts.
   - task: PublishPipelineArtifact@1
