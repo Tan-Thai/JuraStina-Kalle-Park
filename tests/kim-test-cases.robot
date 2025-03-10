@@ -1,23 +1,29 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ../Generic-Test-Cases/generic-keywords.robot
-Resource    kim-keywords.robot
-Variables  ../Generic-Test-Cases/variables.py
-Variables  kim-variables.py
+
+Resource    ${EXECDIR}/keywords/registration-keywords.resource
+Resource    ${EXECDIR}/keywords/login-keywords.resource
+Resource    ${EXECDIR}/keywords/cart-keywords.resource
+Resource    ${EXECDIR}/keywords/tour.keywords.resource
+Resource    ${EXECDIR}/keywords/ticket-keywords.resource
+
+Variables  ${EXECDIR}/python_objects/variables.py
+Variables  ${EXECDIR}/python_objects/kim-variables.py
+
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser
 
 *** Test Cases ***
 Create User
     [Documentation]  User should be able to create an account
-    [Tags]  Andreas
+    [Tags]  Andreas    new-feature
     Given The user is not logged in, and is on the homepage
     When They attempt to register with valid credentials
     Then They should be redirected to the login page
 
 Kim logins successfully
     [Documentation]  User should be able to login
-    [Tags]  Andreas
+    [Tags]  Andreas    new-feature
     Given The user has a registered account
     When They log in with 'VALID' credentials
     Then They should be logged in and be redirected to the homepage
@@ -27,7 +33,7 @@ Kim logins successfully
 # the tickets and the tours now. Since the test to check if the adding of the items are done in generic -TT
 Kim purchases tickets (2 adults, 2 children)
     [Documentation]  User should be able to purchase tickets
-    [Tags]  Andreas    Tan_refactor
+    [Tags]  Andreas    Tan_refactor    new-feature
     Given The User Is Logged In
     When They add a family package of VIP tickets to the cart    # 2 adults, 2 children
     And Proceed with the purchase at checkout
@@ -37,7 +43,7 @@ Kim purchases tickets (2 adults, 2 children)
 
 Kim books and purchase 4 VIP safari tours
     [Documentation]  User should be able to book a safari tour
-    [Tags]  Andreas    Tan_refactor
+    [Tags]  Andreas    Tan_refactor    new-feature
     Given The User Is Logged In
     And They add a family package of VIP tickets to the cart    # 2 adults, 2 children
     When They book 4 VIP safari tours on the weekend

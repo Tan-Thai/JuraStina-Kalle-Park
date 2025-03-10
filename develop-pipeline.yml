@@ -1,0 +1,26 @@
+trigger:
+  - develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - template: templates/install-dependencies.yaml
+
+  # Scripts for running all tests in a file and to run tests based on test case name (integration testing)
+  - script: |
+      robot --output results/logs/output_kim_test.xml --log results/logs/log_kim_test.html --report results/logs/report_kim_test.html tests/kim.robot
+    displayName: 'Run Test File "Kim"'
+
+  - script: |
+      robot --test "Buying Safari Tickets For The Family" --output results/logs/output_kim_test_safari.xml --log results/logs/log_kim_test_safari.html --report results/logs/report_kim_test_safari.html tests/
+    displayName: 'Run Specific Tests'
+
+  # Publish the Robot Framework reports as pipeline artifacts.
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/results/logs/'
+      artifactName: 'robot-reports-develop'
+    displayName: 'Publish Robot Framework Reports'
+
+

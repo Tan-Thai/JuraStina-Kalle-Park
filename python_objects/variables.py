@@ -3,7 +3,7 @@ import os
 
 # region OS related variables
 current_directory = os.getcwd().replace('\\', '/')
-browser = "chrome"
+browser = "headlesschrome"
 url = f"file:///{current_directory}/resources/website/jurap.html"
 # endregion
 
@@ -47,6 +47,7 @@ nav_menu_cart = "id:cart-nav"
 # endregion
 
 # region Ticket variables
+ticket_section = '//*[@id="tickets-section"]'
 add_ticket_to_cart_button = "css:#ticket-form > button[type='submit']"
 # endregion
 
@@ -72,3 +73,8 @@ next_monday_date_TEST = "02-28-2025" ## I DON'T GET THIS ONE, WHY IS AMERICAN IN
 # region Checkout variables
 checkout_button = '//*[@id="checkout-button"]'
 # endregion
+
+ticket_type_dropdown = "id:ticket-type"
+ticket_quantity = "id:ticket-quantity"
+
+prices = []     # Stores prices for comparison
