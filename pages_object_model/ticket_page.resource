@@ -1,11 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource    ${EXECDIR}/keywords/cart-keywords.resource
 Variables    ${EXECDIR}/python_objects/variables.py
 
 *** Keywords ***
-Navigate To Ticket Page
-    Click Element    ${nav_menu_ticket}
-
 Wait For Ticket Category Dropdown
     Wait Until Element Is Visible    ${ticket_category_dropdown}    10s
 
@@ -34,7 +32,6 @@ Verify Ticket Added To Cart Message
     ${message} =    Handle Alert    action=accept
     Should Contain    ${message}    ${item_added_to_cart_message_text}
     Log To Console    alert handled from add ticket.
-    Sleep    1s
 
 Verify Cart Contains Ticket
     ${listed_items}    Get Text    ${cart_details}

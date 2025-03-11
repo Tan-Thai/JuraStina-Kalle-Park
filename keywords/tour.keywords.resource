@@ -8,11 +8,7 @@ They add a tour booked for next ${chosen_day} by navigating the calendar dropdow
     [Tags]    When
     Navigate To Tour Page
     Wait For Safari Section
-    Set Test Variable    ${selected_day}    ${chosen_day}
-    ${amount_of_steps}    get_weekday_delta_offset    ${chosen_day}
-    Open Calendar Dropdown
-    Navigate ${amount_of_steps} steps to the right in the calendar
-    Confirm Calendar Selection
+    Select ${chosen_day} from dropdown calendar
     Add Tour To Cart
     Verify Tour Added To Cart Message
 
@@ -35,15 +31,11 @@ They book ${ticket_count} VIP safari tours on the weekend
 a date is selected
     [Tags]    To be removed
     Wait For Safari Section
-    Capture Page Screenshot
     Open Calendar Dropdown
-    Capture Page Screenshot
     Set Test Variable    ${selected_day}    friday    #Sets a "file wide" variable so it can be accessed later on.
     ${input_count}    get_weekday_delta_offset    friday
     Navigate ${input_count} steps to the right in the calendar
-    Capture Page Screenshot
     Confirm Calendar Selection
-    Capture Page Screenshot
     Add Tour To Cart
 
 the user should get an alert
