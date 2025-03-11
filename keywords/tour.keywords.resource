@@ -35,11 +35,17 @@ They book ${ticket_count} VIP safari tours on the weekend
 a date is selected
     [Tags]    To be removed
     Wait For Safari Section
+    Capture Page Screenshot
     Open Calendar Dropdown
+    Capture Page Screenshot
     Set Test Variable    ${selected_day}    friday    #Sets a "file wide" variable so it can be accessed later on.
+    Capture Page Screenshot
     ${input_count}    get_weekday_delta_offset    friday
+    Capture Page Screenshot
     Navigate ${input_count} steps to the right in the calendar
+    Capture Page Screenshot
     Confirm Calendar Selection
+    Capture Page Screenshot
     Add Tour To Cart
 
 the user should get an alert
