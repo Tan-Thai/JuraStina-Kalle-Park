@@ -16,14 +16,14 @@ Test Teardown    Close Browser
 *** Test Cases ***
 Create User
     [Documentation]  User should be able to create an account
-    [Tags]  Andreas
+    [Tags]  Andreas    new-feature
     Given The user is not logged in, and is on the homepage
     When They attempt to register with valid credentials
     Then They should be redirected to the login page
 
 Kim logins successfully
     [Documentation]  User should be able to login
-    [Tags]  Andreas
+    [Tags]  Andreas    new-feature
     Given The user has a registered account
     When They log in with 'VALID' credentials
     Then They should be logged in and be redirected to the homepage
@@ -33,7 +33,7 @@ Kim logins successfully
 # the tickets and the tours now. Since the test to check if the adding of the items are done in generic -TT
 Kim purchases tickets (2 adults, 2 children)
     [Documentation]  User should be able to purchase tickets
-    [Tags]  Andreas    Tan_refactor
+    [Tags]  Andreas    Tan_refactor    new-feature
     Given The User Is Logged In
     When They add a family package of VIP tickets to the cart    # 2 adults, 2 children
     And Proceed with the purchase at checkout
