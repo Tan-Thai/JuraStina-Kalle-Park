@@ -31,8 +31,9 @@ Add Ticket To Cart
     Click Element    ${add_ticket_to_cart_button}
 
 Verify Ticket Added To Cart Message
-    ${message} =    Handle Alert
+    ${message} =    Handle Alert    action=accept
     Should Contain    ${message}    ${item_added_to_cart_message_text}
+    Log To Console    alert handled from add ticket.
     Sleep    1s
 
 Verify Cart Contains Ticket

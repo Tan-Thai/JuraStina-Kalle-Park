@@ -2,6 +2,8 @@
 Library    SeleniumLibrary
 Library    ${EXECDIR}/python_objects/weekday_helper.py
 
+Resource    ${EXECDIR}/keywords/common-keywords.resource
+
 Variables    ${EXECDIR}/python_objects/variables.py
 *** Keywords ***
 Open Calendar Dropdown
@@ -11,7 +13,9 @@ Confirm Calendar Selection
     Press Keys    None    ENTER
 
 Add Tour To Cart
+    Log To Console   attempting to add tour to cart
     Click Element    ${add_safari_to_cart_button}
+    Log To Console    sucessfully clicked add to cart
 
 Verify Tour Added To Cart Message
     Log To Console    attempting to handle alert.
@@ -47,8 +51,8 @@ Navigate ${amount_of_steps} steps to the right in the calendar
 
 Add VIP Tour
     [Arguments]    ${chosen_day}
-    Click Element    ${nav_menu_safari}
-    Wait Until Element Is Visible    ${safari_section}    10s
+    Navigate To Tour Page
+    Wait For Safari Section
     Select From List By Index    ${safari_type_dropdown}    1 
     Select ${chosen_day} from dropdown calendar
     Add Tour To Cart
