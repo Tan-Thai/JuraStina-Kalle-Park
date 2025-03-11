@@ -17,6 +17,7 @@ Verify Tour Added To Cart Message
     Log To Console    attempting to handle alert.
     Alert Should Be Present    ${EMPTY}    action=accept
     Log To Console    handling alert succeeded
+    Sleep    1s
 
 Verify Cart Contains Tour
     [Arguments]    ${expected_date}

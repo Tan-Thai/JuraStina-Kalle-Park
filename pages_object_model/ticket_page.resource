@@ -33,6 +33,7 @@ Add Ticket To Cart
 Verify Ticket Added To Cart Message
     ${message} =    Handle Alert
     Should Contain    ${message}    ${item_added_to_cart_message_text}
+    Sleep    1s
 
 Verify Cart Contains Ticket
     ${listed_items}    Get Text    ${cart_details}
