@@ -40,5 +40,4 @@ a date is selected
     Add Tour To Cart
 
 the user should get an error alert
-    Alert Should Be Present
-    Handle Alert
+    Alert Should Be Present    ${EMPTY}    action=accept
