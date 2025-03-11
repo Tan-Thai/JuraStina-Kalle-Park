@@ -1,0 +1,17 @@
+pr:
+  branches:
+    include:
+      - dev
+
+jobs:
+- job: RunIntegrationTests
+  steps:
+  # Not sure where to message the simulation of the merge, but im using an echo for now.
+  # If this works, it should more or less *be* on the feature branch > fetch and merge dev into it with *no* commit.
+  # Then run all the tests as if the PR went through. This should ensure that there's no conflicts after -TT
+  - script: |
+      echo "Simulating the merged state of feature/* and dev"
+      git fetch origin dev:dev
+      git merge dev --no-ff --no-commit
+      robot --output results/logs/output_pr_test.xml --log results/logs/log_pr_test.html --report results/logs/report_pr_test.html tests/
+    displayName: 'Run Integration Tests for PR'
