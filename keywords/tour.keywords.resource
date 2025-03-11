@@ -18,6 +18,7 @@ They add a tour booked for next ${chosen_day} by navigating the calendar dropdow
 
 They should be able to see the tour in the cart
     [Tags]    Then
+    Log To Console    navigate and verify tour in cart.
     Navigate To Cart Page
     Wait For Cart Section
     ${expected_date} =    get_upcoming_target_weekday_date    ${selected_day}

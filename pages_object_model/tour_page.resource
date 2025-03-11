@@ -14,7 +14,7 @@ Add Tour To Cart
     Click Element    ${add_safari_to_cart_button}
 
 Verify Tour Added To Cart Message
-    Handle Alert
+    Alert Should Be Present    ${EMPTY}    action=accept
 
 Verify Cart Contains Tour
     [Arguments]    ${expected_date}
@@ -23,23 +23,23 @@ Verify Cart Contains Tour
     Should Contain    ${listed_items}    ${expected_date}
 
 Select ${chosen_day} from dropdown calendar
-    [Tags]    Under_review    Daniel    Tan_refactor
-    Log    starting the dropdown calendar
+    [Tags]    Daniel    Tan_refactor
+    Log To Console   starting the dropdown calendar
     Set Test Variable    ${selected_day}    ${chosen_day}    #Sets a "file wide" variable so it can be accessed later on.
     ${input_count}    get_weekday_delta_offset    ${chosen_day}    #importing library of our file allows calls to funcs. -TT
-    Log    input count: ${input_count}
+    Log To Console   input count: ${input_count}
     # DESPERATION KICKING IN - DK
     # Tried several methods while waiting for food, and what I found as I gave up was something about to go eat was
     # "import keyword" and assigning keywords to the python functions -DK
-    Log    presses enter in date input field
+    Log To Console   presses enter in date input field
     Press Keys    ${safari_date_input_field}    SPACE
-    Log    attempts to step right in the calendar view
+    Log To Console   attempts to step right in the calendar view
     Navigate ${input_count} steps to the right in the calendar
-    Log    presses enter to select x date.
+    Log To Console   presses enter to select x date.
     Press Keys    None    Enter
 
 Navigate ${amount_of_steps} steps to the right in the calendar
-    [Tags]    Under_review    Daniel    Tan_refactor
+    [Tags]    Daniel    Tan_refactor
     [Documentation]    Input solution for the dynamic calendar ui in javascript.
     FOR    ${key_press}    IN RANGE    ${amount_of_steps}
         Press Keys    None    ARROW_RIGHT    #i got trolled by documentation. i assumed none was literally no text -TT
