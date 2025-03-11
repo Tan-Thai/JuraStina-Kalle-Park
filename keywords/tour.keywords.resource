@@ -39,9 +39,7 @@ a date is selected
     Open Calendar Dropdown
     Capture Page Screenshot
     Set Test Variable    ${selected_day}    friday    #Sets a "file wide" variable so it can be accessed later on.
-    Capture Page Screenshot
     ${input_count}    get_weekday_delta_offset    friday
-    Capture Page Screenshot
     Navigate ${input_count} steps to the right in the calendar
     Capture Page Screenshot
     Confirm Calendar Selection

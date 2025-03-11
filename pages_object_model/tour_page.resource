@@ -7,7 +7,8 @@ Resource    ${EXECDIR}/keywords/common-keywords.resource
 Variables    ${EXECDIR}/python_objects/variables.py
 *** Keywords ***
 Open Calendar Dropdown
-    Press Keys    ${safari_date_input_field}    SPACE
+    Set Focus To Element    ${safari_date_input_field}
+    Press Keys    none    SPACE
 
 Confirm Calendar Selection
     Press Keys    None    ENTER
