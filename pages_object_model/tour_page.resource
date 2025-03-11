@@ -22,7 +22,7 @@ Verify Tour Added To Cart Message
     Log To Console    attempting to handle alert.
     Alert Should Be Present    ${EMPTY}    action=accept
     Log To Console    handling alert succeeded
-    Sleep    1s
+    Sleep    0.5s
 
 Verify Cart Contains Tour
     [Arguments]    ${expected_date}
@@ -52,8 +52,6 @@ Navigate ${amount_of_steps} steps to the right in the calendar
 
 Add VIP Tour
     [Arguments]    ${chosen_day}
-    Navigate To Tour Page
-    Wait For Safari Section
     Select From List By Index    ${safari_type_dropdown}    1 
     Select ${chosen_day} from dropdown calendar
     Add Tour To Cart
@@ -61,6 +59,8 @@ Add VIP Tour
 
 Add Multiple VIP Tours
     [Arguments]    ${count}    ${chosen_day}
+    Navigate To Tour Page
+    Wait For Safari Section
     FOR    ${index}    IN RANGE    ${count}
         Add VIP Tour    ${chosen_day}
     END
