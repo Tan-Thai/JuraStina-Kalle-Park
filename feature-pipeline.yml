@@ -1,5 +1,7 @@
 trigger:
-  - feature/*
+  branches:
+    include:
+      - feature/*
 
 pr: none  # disabling the trigger during PR, trying to create a dedicated PR merge pipeline --TT
 
