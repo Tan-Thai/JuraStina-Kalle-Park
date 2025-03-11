@@ -39,10 +39,8 @@ a date is selected
     Set Test Variable    ${selected_day}    friday    #Sets a "file wide" variable so it can be accessed later on.
     ${input_count}    get_weekday_delta_offset    friday
     Navigate ${input_count} steps to the right in the calendar
-    Press Keys    None    enter
+    Confirm Calendar Selection
     Add Tour To Cart
 
 the user should get an error alert
-    Alert Should Be Present    ${EMPTY}    action=accept
-    Log To Console    day picked:${selected_day}
-    Should Be Equal    ${selected_day}    friday
+    Verify Tour Added To Cart Message

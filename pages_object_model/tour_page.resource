@@ -14,7 +14,9 @@ Add Tour To Cart
     Click Element    ${add_safari_to_cart_button}
 
 Verify Tour Added To Cart Message
+    Log To Console    attempting to handle alert.
     Alert Should Be Present    ${EMPTY}    action=accept
+    Log To Console    handling alert succeeded
 
 Verify Cart Contains Tour
     [Arguments]    ${expected_date}
@@ -36,7 +38,7 @@ Select ${chosen_day} from dropdown calendar
     Log To Console   attempts to step right in the calendar view
     Navigate ${input_count} steps to the right in the calendar
     Log To Console   presses enter to select x date.
-    Press Keys    None    Enter
+    Confirm Calendar Selection
 
 Navigate ${amount_of_steps} steps to the right in the calendar
     [Tags]    Daniel    Tan_refactor
@@ -52,8 +54,8 @@ Add VIP Tour
     Wait Until Element Is Visible    ${safari_section}    10s
     Select From List By Index    ${safari_type_dropdown}    1 
     Select ${chosen_day} from dropdown calendar
-    Click Element    ${add_safari_to_cart_button}
-    Handle Alert
+    Add Tour To Cart
+    Verify Tour Added To Cart Message
 
 Add Multiple VIP Tours
     [Arguments]    ${count}    ${chosen_day}
