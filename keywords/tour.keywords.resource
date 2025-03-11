@@ -1,4 +1,5 @@
 *** Settings ***
+Library   ${EXECDIR}/python_objects/weekday_helper.py
 Resource    ${EXECDIR}/pages_object_model/tour_page.resource
 Resource    common-keywords.resource
 

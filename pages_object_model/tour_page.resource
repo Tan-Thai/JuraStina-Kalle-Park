@@ -6,7 +6,6 @@ Variables    ${EXECDIR}/python_objects/variables.py
 *** Keywords ***
 Open Calendar Dropdown
     Press Keys    ${safari_date_input_field}    SPACE
-    Sleep    1s
 
 Confirm Calendar Selection
     Press Keys    None    ENTER
