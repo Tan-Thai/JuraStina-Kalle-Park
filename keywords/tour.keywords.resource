@@ -41,3 +41,4 @@ a date is selected
 
 the user should get an error alert
     Alert Should Be Present
+    Handle Alert
