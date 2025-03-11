@@ -77,3 +77,10 @@ User completes a purchase
     When Proceed with the purchase at checkout
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty
+
+date picker is functional
+    [Tags]    new-feature
+    Given Navigate To Tour Page
+    When a date is selected
+    Sleep    3s
+    Then the user should get an error alert

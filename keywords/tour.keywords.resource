@@ -30,3 +30,14 @@ They add a VIP tour booked for next ${chosen_day} to the cart
 They book ${ticket_count} VIP safari tours on the weekend
     [Documentation]    Books the input amount of VIP safari tours for the next Sunday
     Add Multiple VIP Tours    ${ticket_count}    Sunday
+
+a date is selected
+    [Tags]    To be removed
+    Wait For Safari Section
+    Open Calendar Dropdown
+    Navigate 3 steps to the right in the calendar
+    Press Keys    None    enter
+    Add Tour To Cart
+
+the user should get an error alert
+    Alert Should Be Present
