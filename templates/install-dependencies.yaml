@@ -1,5 +1,4 @@
 steps:
   - script: |
       pip install --upgrade robotframework-seleniumlibrary
-      pip install webdriver-manager
     displayName: 'Install Robot Framework and dependencies'
