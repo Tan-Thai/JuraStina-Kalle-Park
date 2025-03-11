@@ -80,6 +80,8 @@ User completes a purchase
 
 date picker is functional
     [Tags]    new-feature
-    Given Navigate To Tour Page
-    When a date is selected
-    Then the user should get an error alert
+    Given The User Is Logged In
+    And They add a 'VIP' ticket to the cart
+    When Navigate To Tour Page
+    And a date is selected
+    Then the user should get an alert

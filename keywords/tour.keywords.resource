@@ -42,5 +42,5 @@ a date is selected
     Confirm Calendar Selection
     Add Tour To Cart
 
-the user should get an error alert
+the user should get an alert
     Verify Tour Added To Cart Message

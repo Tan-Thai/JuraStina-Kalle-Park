@@ -26,16 +26,12 @@ Verify Cart Contains Tour
 
 Select ${chosen_day} from dropdown calendar
     [Tags]    Daniel    Tan_refactor
-    Log To Console   starting the dropdown calendar
     Set Test Variable    ${selected_day}    ${chosen_day}    #Sets a "file wide" variable so it can be accessed later on.
     ${input_count}    get_weekday_delta_offset    ${chosen_day}    #importing library of our file allows calls to funcs. -TT
-    Log To Console   input count: ${input_count}
     # DESPERATION KICKING IN - DK
     # Tried several methods while waiting for food, and what I found as I gave up was something about to go eat was
     # "import keyword" and assigning keywords to the python functions -DK
-    Log To Console   presses enter in date input field
     Press Keys    ${safari_date_input_field}    SPACE
-    Log To Console   attempts to step right in the calendar view
     Navigate ${input_count} steps to the right in the calendar
     Log To Console   presses enter to select x date.
     Confirm Calendar Selection
