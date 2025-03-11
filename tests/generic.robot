@@ -15,28 +15,28 @@ Test Teardown    Close Browser
 # not sure about the syntax, but I think its common to write keywords as a normal sentence. -TT
 # Intellisense in pycharm says otherwise tho, that it should be written as a title.
 User registers a new account successfully
-    [Tags]    Andreas    Tan_Refactor    new-feature
+    [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to register an account.
     Given The user is not logged in, and is on the homepage
     When They attempt to register with valid credentials
     Then They should be redirected to the login page
 
 User logs in successfully
-    [Tags]    Andreas    Tan_Refactor    new-feature
+    [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to login with a registered account.
     Given The user has a registered account
     When They log in with 'VALID' credentials    # VALID/INVALID to tell the computer to input certain credentials
     Then They should be logged in and be redirected to the homepage
 
 User tries to log in with wrong credentials
-    [Tags]    Andreas    Tan_refactor    new-feature
+    [Tags]    Andreas    Tan_refactor
     [Documentation]    Assures that the user is unable to login with invalid credentials.
     Given The user has a registered account
     When They Log In With 'INVALID' Credentials
     Then They should see an error message indicating login failure
 
 User logs out successfully
-    [Tags]    Andreas    Tan_Refactor    new-feature
+    [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to logout when they are currently logged in.
     Given The User Is Logged In
     When They Log Out
@@ -45,7 +45,7 @@ User logs out successfully
 # Adding a tour/ticket to the cart both tests the carts functions so a dedicated test might not be needed
 # Andreas made a test for cart specifically initially, but is now null due to the other cart tests.
 User adds a ticket to the cart
-    [Tags]    Daniel    Tan_Refactor    new-feature
+    [Tags]    Daniel    Tan_Refactor
     [Documentation]    Assures that the user is able to purchase a ticket when they are logged in.
     Given The User Is Logged In
     And They are on the ticket page
@@ -54,7 +54,7 @@ User adds a ticket to the cart
     Then They should be able to see the ticket in the cart
 
 User adds a tour to the cart
-    [Tags]    Andreas    Tan_refactor    new-feature
+    [Tags]    Andreas    Tan_refactor
     [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
     Given The User Is Logged In
     And They Add A 'VIP' Ticket To The Cart
@@ -70,7 +70,7 @@ User adds a tour using keyboard to the cart
     Then They should be able to see the tour in the cart
 
 User completes a purchase
-    [Tags]    Tan    Andreas_refactor    new-feature
+    [Tags]    Tan    Andreas_refactor
     [Documentation]    Asserts that the user is capable of going through with a purchase at checkout.
     Given The User Is Logged In
     And They Add A 'VIP' Ticket To The Cart
