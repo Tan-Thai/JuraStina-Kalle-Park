@@ -52,7 +52,8 @@ Navigate ${amount_of_steps} steps to the right in the calendar
 
 Add VIP Tour
     [Arguments]    ${chosen_day}
-    Select From List By Index    ${safari_type_dropdown}    1 
+    Select From List By Index    ${safari_type_dropdown}    1
+    Capture Page Screenshot
     Select ${chosen_day} from dropdown calendar
     Add Tour To Cart
     Verify Tour Added To Cart Message
@@ -63,4 +64,6 @@ Add Multiple VIP Tours
     Wait For Safari Section
     FOR    ${index}    IN RANGE    ${count}
         Add VIP Tour    ${chosen_day}
+        Log To Console    ${index}
+        Capture Page Screenshot
     END
