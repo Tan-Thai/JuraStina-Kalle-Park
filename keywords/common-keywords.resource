@@ -37,3 +37,6 @@ Navigate To Registration Page
 
 Navigate to Login Page
     Click Element    ${nav_menu_login}
+
+Navigate To Ticket Page
+    Click Element    ${nav_menu_ticket}

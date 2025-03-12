@@ -78,3 +78,10 @@ User completes a purchase
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty
 
+date picker is functional
+    [Tags]    new-feature
+    Given The User Is Logged In
+    And They add a 'VIP' ticket to the cart
+    When Navigate To Tour Page
+    And a date is selected
+    Then the user should get an alert

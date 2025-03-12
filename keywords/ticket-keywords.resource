@@ -38,3 +38,4 @@ They add a family package of VIP tickets to the cart
     Add VIP Adult Tickets    2
     Add VIP Child Tickets    2
     They should be able to see the ticket in the cart
+    Log To Console    Tickets purchased
