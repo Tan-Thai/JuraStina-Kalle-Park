@@ -15,3 +15,15 @@ jobs:
       git merge dev --no-ff --no-commit
       robot --output results/logs/output_pr_test.xml --log results/logs/log_pr_test.html --report results/logs/report_pr_test.html tests/
     displayName: 'Run Integration Tests for PR'
+
+  - script: |
+      git reset --hard HEAD
+      git clean -fd
+    displayName: 'Reset Repository State'
+
+  # Publish the Robot Framework reports as pipeline artifacts.
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/results/logs/'
+      artifactName: 'robot-reports-integration-test'
+    displayName: 'Publish Robot Framework Reports'

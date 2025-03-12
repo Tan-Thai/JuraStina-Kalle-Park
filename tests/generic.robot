@@ -62,7 +62,7 @@ User adds a tour to the cart
     Then They should be able to see the tour in the cart
 
 User adds a tour using keyboard to the cart
-    [Tags]    Andreas    Tan_refactor    Daniel_refactor
+    [Tags]    Andreas    Tan_refactor    Daniel_refactor    new-feature
     [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
     Given The User Is Logged In
     And They Add A 'REGULAR' Ticket To The Cart
