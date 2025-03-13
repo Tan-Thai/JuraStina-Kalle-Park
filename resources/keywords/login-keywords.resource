@@ -1,7 +1,7 @@
 *** Settings ***
-Resource    ${EXECDIR}/pages_object_model/login_page.resource
-Resource    ${EXECDIR}/keywords/common-keywords.resource
-Resource    ${EXECDIR}/keywords/registration-keywords.resource
+Resource    ${EXECDIR}/resources/pages_object_model/login_page.resource
+Resource    ${EXECDIR}/resources/keywords/common-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/registration-keywords.resource
 
 *** Keywords ***
 ### Login ###

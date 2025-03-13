@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ${EXECDIR}/keywords/cart-keywords.resource
-Variables    ${EXECDIR}/python_objects/variables.py
+Resource    ${EXECDIR}/resources/keywords/cart-keywords.resource
+Variables    ${EXECDIR}/resources/python_objects/variables.py
 
 *** Keywords ***
 Wait For Ticket Category Dropdown

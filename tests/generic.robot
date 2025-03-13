@@ -1,12 +1,13 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ${EXECDIR}/keywords/registration-keywords.resource
-Resource    ${EXECDIR}/keywords/login-keywords.resource
-Resource    ${EXECDIR}/keywords/ticket-keywords.resource
-Resource    ${EXECDIR}/keywords/tour.keywords.resource
-Resource    ${EXECDIR}/keywords/cart-keywords.resource
 
-Variables  ${EXECDIR}/python_objects/variables.py
+Resource    ${EXECDIR}/resources/keywords/registration-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/login-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/ticket-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/tour.keywords.resource
+Resource    ${EXECDIR}/resources/keywords/cart-keywords.resource
+
+Variables  ${EXECDIR}/resources/python_objects/variables.py
 
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser

@@ -1,8 +1,10 @@
 *** Settings ***
 Library  SeleniumLibrary
 
-Resource    ${EXECDIR}/keywords/registration-keywords.resource
-Resource    ${EXECDIR}/keywords/snåla-kalle-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/registration-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/snåla-kalle-keywords.resource
+
+Variables    ${EXECDIR}/resources/python_objects/variables.py
 
 Test Setup  Open Browser  ${URL}  ${BROWSER}    options=add_experimental_option("prefs", {"intl.accept_languages": "en-GB"})
 Test Teardown    Close Browser

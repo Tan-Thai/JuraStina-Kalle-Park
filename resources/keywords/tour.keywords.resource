@@ -1,7 +1,7 @@
 *** Settings ***
-Library   ${EXECDIR}/python_objects/weekday_helper.py
-Resource    ${EXECDIR}/pages_object_model/tour_page.resource
-Resource    common-keywords.resource
+Library   ${EXECDIR}/resources/python_objects/weekday_helper.py
+Resource    ${EXECDIR}/resources/pages_object_model/tour_page.resource
+Resource    ${EXECDIR}/resources/keywords/common-keywords.resource
 
 *** Keywords ***
 They add a tour booked for next ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart
