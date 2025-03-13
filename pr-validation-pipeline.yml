@@ -3,20 +3,35 @@ pr:
     include:
       - dev
 
+# Partial code from Deepseek due to me being quite lost in regards to YML and Azure -TT
+
+# Not sure where to message the simulation of the merge, but im using an echo for now.
+  # If this works, it should more or less *be* on the feature branch > fetch and merge dev into it with *no* commit.
+  # Then run all the tests as if the PR went through. This should ensure that there's no conflicts after -TT
+
 jobs:
 - job: RunIntegrationTests
   steps:
+  # Check out the PR branch (the feature branch)
+  - checkout: self
+    fetchDepth: 1
+    persistCredentials: true
+
+  # Fetch the latest dev branch
   - script: |
-      echo "Creating a temporary branch for the PR merge simulation"
-      git checkout -b temp-pr-branch
-    displayName: 'Create Temporary Branch'
-  # Not sure where to message the simulation of the merge, but im using an echo for now.
-  # If this works, it should more or less *be* on the feature branch > fetch and merge dev into it with *no* commit.
-  # Then run all the tests as if the PR went through. This should ensure that there's no conflicts after -TT
-  - script: |
-      echo "Simulating the merged state of feature/* and dev"
+      echo "Fetching the latest dev branch"
       git fetch origin dev:dev
+    displayName: 'Fetch dev Branch'
+
+  # Merge dev into the PR branch locally (without committing)
+  - script: |
+      echo "Simulating the merged state of the PR branch and dev"
       git merge dev --no-ff --no-commit
+    displayName: 'Merge dev into PR Branch'
+
+  # Run Robot Framework tests on the merged state
+  - script: |
+      echo "Running Robot Framework tests on the merged state"
       robot --output results/logs/output_pr_test.xml --log results/logs/log_pr_test.html --report results/logs/report_pr_test.html tests/
     displayName: 'Run Integration Tests for PR'
 
