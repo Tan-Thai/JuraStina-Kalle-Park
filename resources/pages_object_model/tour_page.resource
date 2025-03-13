@@ -1,10 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    ${EXECDIR}/python_objects/weekday_helper.py
+Library    ${EXECDIR}/resources/python_objects/weekday_helper.py
 
-Resource    ${EXECDIR}/keywords/common-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/common-keywords.resource
 
-Variables    ${EXECDIR}/python_objects/variables.py
+Variables    ${EXECDIR}/resources/python_objects/variables.py
 *** Keywords ***
 Open Calendar Dropdown
     Set Focus To Element    ${safari_date_input_field}
