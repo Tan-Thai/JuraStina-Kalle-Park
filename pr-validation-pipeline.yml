@@ -12,10 +12,20 @@ pr:
 jobs:
 - job: RunIntegrationTests
   steps:
+  # Install dependencies (Python, Robot Framework, etc.)
+  - template: templates/install-dependencies.yaml
+
   # Check out the PR branch (the feature branch)
   - checkout: self
     fetchDepth: 1
     persistCredentials: true
+
+  # Configure Git user information
+  - script: |
+      echo "Configuring Git user information"
+      git config --global user.email "azure-pipelines@example.com"
+      git config --global user.name "Azure Pipelines"
+    displayName: 'Configure Git User'
 
   # Fetch the latest dev branch
   - script: |
@@ -35,12 +45,14 @@ jobs:
       robot --output results/logs/output_pr_test.xml --log results/logs/log_pr_test.html --report results/logs/report_pr_test.html tests/
     displayName: 'Run Integration Tests for PR'
 
+  # Reset the repository state to clean up
   - script: |
+      echo "Resetting the repository state"
       git reset --hard HEAD
       git clean -fd
     displayName: 'Reset Repository State'
 
-  # Publish the Robot Framework reports as pipeline artifacts.
+  # Publish the Robot Framework reports as pipeline artifacts
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(System.DefaultWorkingDirectory)/results/logs/'
