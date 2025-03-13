@@ -7,7 +7,7 @@ Resource    ${EXECDIR}/resources/pages_object_model/cart_page.resource
 Resource    ${EXECDIR}/resources/keywords/common-keywords.resource
 
 Variables    ${EXECDIR}/resources/python_objects/variables.py
-#Known Issue: Buying a ticket and then choosing a tour is not working. (blame Max) --TT
+#Known Issue: Buying a ticket and then choosing a tour is not working. --TT
 *** Keywords ***
 Proceed with the purchase at checkout
     [Tags]    When
