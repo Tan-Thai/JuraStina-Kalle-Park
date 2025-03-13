@@ -6,6 +6,10 @@ pr:
 jobs:
 - job: RunIntegrationTests
   steps:
+  - script: |
+      echo "Creating a temporary branch for the PR merge simulation"
+      git checkout -b temp-pr-branch
+    displayName: 'Create Temporary Branch'
   # Not sure where to message the simulation of the merge, but im using an echo for now.
   # If this works, it should more or less *be* on the feature branch > fetch and merge dev into it with *no* commit.
   # Then run all the tests as if the PR went through. This should ensure that there's no conflicts after -TT
