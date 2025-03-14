@@ -7,8 +7,9 @@ Variables    ${EXECDIR}/resources/python_objects/variables.py
 *** Keywords ***
 The user is not logged in, and is on the homepage
     [Tags]    Given
-    Log Out If Logged In
+    [Documentation]    Adjusted slightly due to to old redundant code.
     Wait For Login Nav-Button
+    Wait For Home Section
 
 They attempt to register with valid credentials
     [Tags]    When

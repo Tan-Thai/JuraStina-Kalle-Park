@@ -4,7 +4,7 @@ Resource    ${EXECDIR}/resources/pages_object_model/tour_page.resource
 Resource    ${EXECDIR}/resources/keywords/common-keywords.resource
 
 *** Keywords ***
-They add a tour booked for next ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart
+They add a tour booked for next ${chosen_day} with the calendar dropdown to the cart
     [Tags]    When
     Navigate To Tour Page
     Wait For Safari Section
@@ -28,15 +28,3 @@ They book ${ticket_count} VIP safari tours on the weekend
     [Documentation]    Books the input amount of VIP safari tours for the next Sunday
     Add Multiple VIP Tours    ${ticket_count}    Sunday
 
-a date is selected
-    [Tags]    To be removed
-    Wait For Safari Section
-    Open Calendar Dropdown
-    Set Test Variable    ${selected_day}    friday    #Sets a "file wide" variable so it can be accessed later on.
-    ${input_count}    get_weekday_delta_offset    friday
-    Navigate ${input_count} steps to the right in the calendar
-    Confirm Calendar Selection
-    Add Tour To Cart
-
-the user should get an alert
-    Verify Tour Added To Cart Message
