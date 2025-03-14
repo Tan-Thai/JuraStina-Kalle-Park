@@ -4,7 +4,7 @@ Resource    ${EXECDIR}/resources/pages_object_model/tour_page.resource
 Resource    ${EXECDIR}/resources/keywords/common-keywords.resource
 
 *** Keywords ***
-They add a tour booked for next ${chosen_day} by navigating the calendar dropdown using the keyboard to the cart
+They add a tour booked for next ${chosen_day} with the calendar dropdown to the cart
     [Tags]    When
     Navigate To Tour Page
     Wait For Safari Section
