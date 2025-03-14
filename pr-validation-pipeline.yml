@@ -45,7 +45,7 @@ jobs:
   # Merge dev into the PR branch locally (without committing)
   - script: |
       echo "Simulating the merged state of the PR branch and dev"
-      git merge dev --no-ff --no-commit
+      git merge dev --no-ff --no-commit --allow-unrelated-histories
     displayName: 'Merge dev into PR Branch'
 
   # Run Robot Framework tests on the merged state
