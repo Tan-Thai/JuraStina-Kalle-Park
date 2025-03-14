@@ -54,16 +54,17 @@ jobs:
       robot --output results/logs/output_pr_test.xml --log results/logs/log_pr_test.html --report results/logs/report_pr_test.html tests/
     displayName: 'Run Integration Tests for PR'
 
-  # Reset the repository state to clean up
-  - script: |
-      echo "Resetting the repository state"
-      git reset --hard HEAD
-      git clean -fd
-    displayName: 'Reset Repository State'
-
   # Publish the Robot Framework reports as pipeline artifacts
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(System.DefaultWorkingDirectory)/results/logs/'
       artifactName: 'robot-reports-integration-test'
     displayName: 'Publish Robot Framework Reports'
+
+  # Reset the repository state to clean up
+  # Moved this to the bottom if this is the cause to our missing publish directory --TT
+  - script: |
+      echo "Resetting the repository state"
+      git reset --hard HEAD
+      git clean -fd
+    displayName: 'Reset Repository State'
