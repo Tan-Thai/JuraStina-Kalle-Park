@@ -1,7 +1,16 @@
+trigger:
+  branches:
+    exclude:
+      - feature/*
+      - main
+
 pr:
   branches:
     include:
       - dev
+    exclude:
+      - feature/*
+      - main
 
 # Partial code from Deepseek due to me being quite lost in regards to YML and Azure -TT
 
