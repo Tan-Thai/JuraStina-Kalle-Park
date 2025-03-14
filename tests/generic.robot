@@ -1,12 +1,13 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    ${EXECDIR}/keywords/registration-keywords.resource
-Resource    ${EXECDIR}/keywords/login-keywords.resource
-Resource    ${EXECDIR}/keywords/ticket-keywords.resource
-Resource    ${EXECDIR}/keywords/tour.keywords.resource
-Resource    ${EXECDIR}/keywords/cart-keywords.resource
 
-Variables  ${EXECDIR}/python_objects/variables.py
+Resource    ${EXECDIR}/resources/keywords/registration-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/login-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/ticket-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/tour.keywords.resource
+Resource    ${EXECDIR}/resources/keywords/cart-keywords.resource
+
+Variables  ${EXECDIR}/resources/python_objects/variables.py
 
 Test Setup  Open Browser  ${URL}  ${BROWSER}
 Test Teardown    Close Browser
@@ -22,21 +23,21 @@ User registers a new account successfully
     Then They should be redirected to the login page
 
 User logs in successfully
-    [Tags]    Andreas    Tan_Refactor    new-feature
+    [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to login with a registered account.
     Given The user has a registered account
     When They log in with 'VALID' credentials    # VALID/INVALID to tell the computer to input certain credentials
     Then They should be logged in and be redirected to the homepage
 
 User tries to log in with wrong credentials
-    [Tags]    Andreas    Tan_refactor    new-feature
+    [Tags]    Andreas    Tan_refactor
     [Documentation]    Assures that the user is unable to login with invalid credentials.
     Given The user has a registered account
     When They Log In With 'INVALID' Credentials
     Then They should see an error message indicating login failure
 
 User logs out successfully
-    [Tags]    Andreas    Tan_Refactor    new-feature
+    [Tags]    Andreas    Tan_Refactor
     [Documentation]    Assures that the user is able to logout when they are currently logged in.
     Given The User Is Logged In
     When They Log Out
@@ -45,7 +46,7 @@ User logs out successfully
 # Adding a tour/ticket to the cart both tests the carts functions so a dedicated test might not be needed
 # Andreas made a test for cart specifically initially, but is now null due to the other cart tests.
 User adds a ticket to the cart
-    [Tags]    Daniel    Tan_Refactor    new-feature
+    [Tags]    Daniel    Tan_Refactor
     [Documentation]    Assures that the user is able to purchase a ticket when they are logged in.
     Given The User Is Logged In
     And They are on the ticket page
@@ -58,7 +59,7 @@ User adds a tour to the cart
     [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
     Given The User Is Logged In
     And They Add A 'VIP' Ticket To The Cart
-    When They add a tour booked for next SuNday by navigating the calendar dropdown using the keyboard to the cart
+    When They add a tour booked for next Sunday with the calendar dropdown to the cart
     Then They should be able to see the tour in the cart
 
 User adds a tour using keyboard to the cart
@@ -66,22 +67,14 @@ User adds a tour using keyboard to the cart
     [Documentation]    Assures that the user is able to purchase a tour when they are logged in.
     Given The User Is Logged In
     And They Add A 'REGULAR' Ticket To The Cart
-    When They add a tour booked for next tuesday by navigating the calendar dropdown using the keyboard to the cart
+    When They add a tour booked for next TUESDAY with the calendar dropdown to the cart
     Then They should be able to see the tour in the cart
 
 User completes a purchase
-    [Tags]    Tan    Andreas_refactor    new-feature
+    [Tags]    Tan    Andreas_refactor
     [Documentation]    Asserts that the user is capable of going through with a purchase at checkout.
     Given The User Is Logged In
     And They Add A 'VIP' Ticket To The Cart
     When Proceed with the purchase at checkout
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty
-
-date picker is functional
-    [Tags]    new-feature
-    Given The User Is Logged In
-    And They add a 'VIP' ticket to the cart
-    When Navigate To Tour Page
-    And a date is selected
-    Then the user should get an alert

@@ -1,14 +1,13 @@
 *** Settings ***
-Resource    ${EXECDIR}/keywords/tour.keywords.resource
-Resource    ${EXECDIR}/keywords/ticket-keywords.resource
-Resource    ${EXECDIR}/keywords/login-keywords.resource
-Resource    ${EXECDIR}/keywords/cart-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/tour.keywords.resource
+Resource    ${EXECDIR}/resources/keywords/ticket-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/login-keywords.resource
+Resource    ${EXECDIR}/resources/keywords/cart-keywords.resource
 
-Variables    ${EXECDIR}/python_objects/snåla-kalle-variables.py
+Variables    ${EXECDIR}/resources/python_objects/snåla-kalle-variables.py
 
 *** Keywords ***
 ## Scenario Specific ##
-
 Snåla-Kalle has an existing account and is logged in to a new account "Ståla-Nalle"
     [Tags]    Given
     [Documentation]    Entrypoint. Setting test variables such as usernames for said test.
@@ -48,7 +47,7 @@ User checks the price of a ticket and a tour
     [Tags]    Internal
     [Arguments]    ${TICKET_TYPE}    
     They add a '${TICKET_TYPE}' ticket to the cart
-    They add a tour booked for next wednesday by navigating the calendar dropdown using the keyboard to the cart
+    They add a tour booked for next wednesday with the calendar dropdown to the cart
     They check the price of the items listed in the cart
 
 User changes account to ${USERNAME}
@@ -66,7 +65,7 @@ Create a purchase on account
     [Documentation]    Will log in and go through a full purchase to simulate a "visit". Then logs out.
     Attempt to login and confirm that it succeeded    ${USERNAME}
     They add a 'REGULAR' ticket to the cart
-    They add a tour booked for next monday by navigating the calendar dropdown using the keyboard to the cart
+    They add a tour booked for next wednesday with the calendar dropdown to the cart
     Proceed with the purchase at checkout
     Handle Alert
     The cart should be empty

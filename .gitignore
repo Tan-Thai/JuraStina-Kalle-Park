@@ -17,4 +17,5 @@ selenium-screenshot-*.png
 /Kim-Family/__pycache__
 /resources/global_files/__pycache__
 /Snåla-Kalle-Scenario/__pycache__
+/resources/python_objects/__pycache__/
 /python_objects/__pycache__/
