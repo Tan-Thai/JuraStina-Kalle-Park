@@ -8,7 +8,6 @@ Variables    ${EXECDIR}/resources/python_objects/snåla-kalle-variables.py
 
 *** Keywords ***
 ## Scenario Specific ##
-
 Snåla-Kalle has an existing account and is logged in to a new account "Ståla-Nalle"
     [Tags]    Given
     [Documentation]    Entrypoint. Setting test variables such as usernames for said test.

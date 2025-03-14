@@ -16,7 +16,7 @@ Test Teardown    Close Browser
 # not sure about the syntax, but I think its common to write keywords as a normal sentence. -TT
 # Intellisense in pycharm says otherwise tho, that it should be written as a title.
 User registers a new account successfully
-    [Tags]    Andreas    Tan_Refactor
+    [Tags]    Andreas    Tan_Refactor    new-feature
     [Documentation]    Assures that the user is able to register an account.
     Given The user is not logged in, and is on the homepage
     When They attempt to register with valid credentials
@@ -78,11 +78,3 @@ User completes a purchase
     When Proceed with the purchase at checkout
     Then They should be able to see a checkout summary with their purchased items
     And The cart should be empty
-
-date picker is functional
-    [Tags]    new-feature
-    Given The User Is Logged In
-    And They add a 'VIP' ticket to the cart
-    When Navigate To Tour Page
-    And a date is selected
-    Then the user should get an alert

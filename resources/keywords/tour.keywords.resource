@@ -28,15 +28,3 @@ They book ${ticket_count} VIP safari tours on the weekend
     [Documentation]    Books the input amount of VIP safari tours for the next Sunday
     Add Multiple VIP Tours    ${ticket_count}    Sunday
 
-a date is selected
-    [Tags]    To be removed
-    Wait For Safari Section
-    Open Calendar Dropdown
-    Set Test Variable    ${selected_day}    friday    #Sets a "file wide" variable so it can be accessed later on.
-    ${input_count}    get_weekday_delta_offset    friday
-    Navigate ${input_count} steps to the right in the calendar
-    Confirm Calendar Selection
-    Add Tour To Cart
-
-the user should get an alert
-    Verify Tour Added To Cart Message

@@ -18,4 +18,4 @@ selenium-screenshot-*.png
 /resources/global_files/__pycache__
 /Snåla-Kalle-Scenario/__pycache__
 /resources/python_objects/__pycache__/
-/resources/python_objects/__pycache__/
+/python_objects/__pycache__/
